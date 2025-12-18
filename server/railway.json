@@ -1,5 +1,5 @@
-﻿{
-  "utf8schema": "https://railway.app/railway.schema.json",
+{
+  "$schema": "https://railway.app/railway.schema.json",
   "build": {
     "builder": "NIXPACKS",
     "buildCommand": "npm install && npm run build"
