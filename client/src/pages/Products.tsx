@@ -44,7 +44,7 @@ export default function Products() {
     
     try {
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-      const response = await fetch(`${apiUrl}/api/product-waitlist`, {
+      const response = await fetch(`${apiUrl}/product-waitlist`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
