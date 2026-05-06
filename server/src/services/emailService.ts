@@ -295,7 +295,7 @@ export const emailTemplates = {
     `
   }),
 
-  productWaitlistConfirmation: (email: string) => ({
+  productWaitlistConfirmation: () => ({
     subject: 'You\'re on the A.T.L.A.S. ENGINE Waitlist',
     html: `
       <!DOCTYPE html>

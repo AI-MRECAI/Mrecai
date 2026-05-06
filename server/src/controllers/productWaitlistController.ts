@@ -46,7 +46,7 @@ export const createProductWaitlist = async (req: Request, res: Response): Promis
     }).catch(err => console.error('Admin notification email failed:', err));
 
     // Send confirmation email to user (non-blocking)
-    const confirmationEmail = emailTemplates.productWaitlistConfirmation(email);
+    const confirmationEmail = emailTemplates.productWaitlistConfirmation();
     
     sendEmail({
       to: email,
