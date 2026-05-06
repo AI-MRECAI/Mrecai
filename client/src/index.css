@@ -244,6 +244,12 @@
     /* Mobile: 128px, Tablet: 160px, Desktop: 192px */
   }
 
+  /* Hero section with proper header offset */
+  .hero-section {
+    @apply pt-40 md:pt-44 lg:pt-48 pb-20;
+    /* Accounts for fixed header: Mobile: 160px, Tablet: 176px, Desktop: 192px top padding */
+  }
+
   /* Top padding only */
   .section-padding-top {
     @apply pt-20 md:pt-24 lg:pt-28;

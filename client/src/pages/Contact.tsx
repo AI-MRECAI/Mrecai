@@ -12,7 +12,9 @@ const Contact = () => {
     phone: '',
     subject: '',
     message: '',
-    newsletter: false
+    newsletter: false,
+    smsTransactional: false,
+    smsMarketing: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -154,7 +156,9 @@ const Contact = () => {
         phone: '',
         subject: '',
         message: '',
-        newsletter: false
+        newsletter: false,
+        smsTransactional: false,
+        smsMarketing: false
       });
     } catch (error) {
       setSubmitStatus('error');
@@ -178,10 +182,10 @@ const Contact = () => {
   return (
     <>
       <SEO
-        title="Contact MRECAI | Get Your Free Consultation Today"
-        description="Contact MRE Consulting & Insurance. Call 929-919-3574 or email Matthew@MRECAI.com. Book your free consultation and get expert advice. 24/7 support available."
+        title="Contact MRECAI | AI Consulting & Software Development Inquiry"
+        description="Contact MRE Consulting & Insurance for AI consulting, custom software development, and digital marketing services. Call 929-702-2818 or email Matthew@MRECAI.com. Free consultation available."
         canonical="/contact"
-        keywords="contact MRECAI, free consultation, business consulting contact, insurance quote, get in touch"
+        keywords="contact MRECAI, AI consulting inquiry, software development quote, digital marketing consultation, technology services contact"
         schema={{
           '@context': 'https://schema.org',
           '@graph': [
@@ -197,7 +201,7 @@ const Contact = () => {
         }}
       />
 
-      <div className="pt-20">
+      <div className="pt-40 md:pt-44">
         {/* Hero Section */}
         <section className="relative min-h-[40vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-800 to-navy-900">
@@ -214,7 +218,7 @@ const Contact = () => {
                 Get in <span className="bg-gradient-to-r from-primary-400 via-primary-300 to-primary-500 bg-clip-text text-transparent">Touch</span>
               </h1>
               <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-                We're here to help. Reach out to us and let's discuss how we can support your goals.
+                Ready to transform your business with AI and technology? Let's discuss your project and goals.
               </p>
             </motion.div>
           </div>
@@ -379,7 +383,7 @@ const Contact = () => {
 
                       <div>
                         <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-                          Phone Number
+                          Phone Number (Optional)
                         </label>
                         <input
                           type="tel"
@@ -390,11 +394,101 @@ const Contact = () => {
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
                           placeholder="(555) 123-4567"
                         />
-                        <p className="mt-2 text-xs text-gray-600 bg-blue-50 border border-blue-200 rounded-lg p-3">
-                          <strong>SMS Consent:</strong> By entering your phone number and submitting this form, you agree to receive SMS messages from MRE Consulting & Insurance related to your inquiry, appointment scheduling, and customer support. Message & data rates may apply. Message frequency varies. Reply STOP to unsubscribe or HELP for assistance. Your information will not be sold or shared.
-                        </p>
                       </div>
                     </div>
+
+                    {/* Optional SMS Consent Checkboxes - Only shown if phone is entered */}
+                    {formData.phone && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4 space-y-4"
+                      >
+                        <div className="text-center mb-3">
+                          <strong className="text-navy-900 text-base block">
+                            📱 Optional: SMS Text Message Preferences
+                          </strong>
+                          <p className="text-xs text-gray-600 mt-1">
+                            Choose which types of SMS messages you'd like to receive (if any)
+                          </p>
+                        </div>
+
+                        {/* Transactional Messages Checkbox */}
+                        <label className="flex items-start cursor-pointer group p-3 rounded-lg hover:bg-blue-100 transition-colors border-2 border-transparent hover:border-blue-300">
+                          <input
+                            type="checkbox"
+                            name="smsTransactional"
+                            checked={formData.smsTransactional}
+                            onChange={handleChange}
+                            className="mt-1 h-5 w-5 text-primary-600 border-gray-300 rounded focus:ring-primary-500 focus:ring-2 cursor-pointer"
+                          />
+                          <span className="ml-3 text-sm text-gray-700 leading-relaxed">
+                            <strong className="text-navy-900 block mb-1">
+                              ✅ Transactional Messages (Recommended)
+                            </strong>
+                            I agree to receive SMS text messages from MRE Consulting & Insurance related to:
+                            <ul className="list-disc ml-5 mt-1 space-y-0.5">
+                              <li>Appointment confirmations and reminders</li>
+                              <li>Scheduling updates and changes</li>
+                              <li>Customer support responses</li>
+                              <li>Service-related notifications</li>
+                            </ul>
+                            <span className="block mt-2 text-xs text-gray-600">
+                              Message frequency varies. Message and data rates may apply. Reply <strong>STOP</strong> to unsubscribe or <strong>HELP</strong> for assistance.
+                            </span>
+                          </span>
+                        </label>
+
+                        {/* Marketing Messages Checkbox */}
+                        <label className="flex items-start cursor-pointer group p-3 rounded-lg hover:bg-blue-100 transition-colors border-2 border-transparent hover:border-blue-300">
+                          <input
+                            type="checkbox"
+                            name="smsMarketing"
+                            checked={formData.smsMarketing}
+                            onChange={handleChange}
+                            className="mt-1 h-5 w-5 text-primary-600 border-gray-300 rounded focus:ring-primary-500 focus:ring-2 cursor-pointer"
+                          />
+                          <span className="ml-3 text-sm text-gray-700 leading-relaxed">
+                            <strong className="text-navy-900 block mb-1">
+                              📢 Marketing Messages (Optional)
+                            </strong>
+                            I agree to receive SMS text messages from MRE Consulting & Insurance related to:
+                            <ul className="list-disc ml-5 mt-1 space-y-0.5">
+                              <li>Promotional offers and discounts</li>
+                              <li>New service announcements</li>
+                              <li>Marketing campaigns</li>
+                              <li>Special events and updates</li>
+                            </ul>
+                            <span className="block mt-2 text-xs text-gray-600">
+                              Message frequency varies. Message and data rates may apply. Reply <strong>STOP</strong> to unsubscribe or <strong>HELP</strong> for assistance.
+                            </span>
+                          </span>
+                        </label>
+
+                        {/* Consent Not Required Notice */}
+                        <div className="mt-3 pt-3 border-t border-blue-300">
+                          <div className="bg-white rounded-lg p-3 border border-blue-200">
+                            <p className="text-xs text-gray-700 text-center">
+                              <strong className="text-primary-700">Consent is not required to submit this form.</strong>
+                              <br />
+                              You can submit your inquiry whether or not you check these boxes.
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Privacy Policy Link */}
+                        <div className="text-center">
+                          <a 
+                            href="/privacy-policy" 
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-primary-600 hover:text-primary-700 underline font-medium"
+                          >
+                            📄 View Privacy Policy & Terms of Service
+                          </a>
+                        </div>
+                      </motion.div>
+                    )}
 
                     {/* Subject */}
                     <div>

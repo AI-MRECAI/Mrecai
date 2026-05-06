@@ -1,521 +1,426 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaHome, FaChevronRight, FaRobot, FaCogs, FaLaptopCode, FaPuzzlePiece, FaChartLine, FaUsers, FaCheck, FaArrowRight, FaCalendarAlt, FaLightbulb, FaBrain, FaShieldAlt, FaRocket } from 'react-icons/fa';
+import { FaRobot, FaBrain, FaCogs, FaChartLine, FaShieldAlt, FaRocket, FaArrowRight, FaCheckCircle, FaLightbulb, FaUsers } from 'react-icons/fa';
 import SEO from '../components/common/SEO';
-import { breadcrumbSchema } from '../utils/schemas';
+import { serviceSchemas, faqSchema } from '../utils/schemas';
+
+const faqs = [
+    {
+        question: 'How do you identify AI opportunities in my business?',
+        answer: 'We conduct an "AI Readiness Audit," mapping your manual friction points—like lead follow-up, document processing, and scheduling—to specific automation solutions with the highest ROI.',
+    },
+    {
+        question: 'What is a 24/7 AI Sales Agent?',
+        answer: 'It is a custom-trained LLM that lives on your website or SMS channel, qualifies leads in real-time, answers complex service questions, and books appointments directly to your calendar while you sleep.',
+    },
+    {
+        question: 'Do I need to be a large enterprise to use AI?',
+        answer: 'No. AI is the great equalizer. Small businesses can now deploy the same level of operational intelligence as Fortune 500 firms at a fraction of the cost, often seeing ROI in less than 90 days.',
+    },
+    {
+        question: 'How do you handle data privacy with AI implementations?',
+        answer: 'Data security is our top priority. We use secure, private API connections and enterprise-grade infrastructure to ensure your sensitive business and client data never enters the public training pool.',
+    },
+];
 
 const AIConsulting = () => {
-    const aiServices = [
-        {
-            id: 'ai-consulting',
-            icon: FaBrain,
-            title: '1. Artificial Intelligence Consulting',
-            subtitle: 'Transform the way you think, work, and grow.',
-            description: 'Our AI Consulting service helps you identify where artificial intelligence can create the biggest impact in your life or business — and then implements those solutions with precision.',
-            gradient: 'from-blue-500 to-blue-600',
-            whatWeDo: [
-                'AI Readiness & Opportunity Assessment',
-                'Intelligent Process Automation (RPA + AI)',
-                'Predictive Analytics & Forecasting',
-                'Natural Language Processing (NLP) for emails, chats, and documents',
-                'AI Chatbots & Virtual Client Service Agents',
-                'AI Policy, Tax, and Financial Analysis Models',
-                'AI-Driven Risk & Claims Predictions',
-                'AI-Based Customer Behavior and Retention Insights'
-            ],
-            examples: [
-                'Automating client intake forms, document uploads, and quote generation',
-                'Using AI models to analyze spending, identify savings, or detect potential tax issues before they occur',
-                'AI chatbots that answer insurance, tax, and compliance questions 24/7',
-                'Intelligent reminders for renewals, audits, or financial milestones'
-            ],
-            benefits: [
-                'Save hours of manual work every week',
-                'Identify opportunities before competitors',
-                'Improve accuracy, reduce human error',
-                'Predict outcomes with confidence',
-                'Serve clients and customers instantly, any time of day'
-            ],
-            whoItsFor: [
-                'Small business owners who want smarter workflows',
-                'Professionals managing multiple revenue streams',
-                'Families managing budgets, insurance, and tax filings',
-                'Enterprises looking to optimize operations or client engagement'
-            ]
-        },
-        {
-            id: 'ai-automation',
-            icon: FaCogs,
-            title: '2. AI Automation Consulting',
-            subtitle: 'From manual to effortless — we automate the repetitive so you can focus on growth.',
-            description: 'MRE Consulting & Insurance specializes in AI Automation — transforming manual, time-consuming tasks into seamless, automated systems that operate around the clock.',
-            gradient: 'from-purple-500 to-purple-600',
-            whatWeDo: [
-                'Workflow Automation (email, intake, CRM, calendar, follow-ups)',
-                'Smart Document Processing (OCR + NLP)',
-                'AI-Powered Lead Tracking & Client Scoring',
-                'Automatic Quote Generation & Renewals',
-                'Accounting and Payroll Automation',
-                'Marketing Automation & AI-Personalized Outreach',
-                'Multi-Platform Integration (Zapier, HubSpot, Google, CRMs, APIs)'
-            ],
-            examples: [
-                'Auto-generating personalized insurance quotes once client data is uploaded',
-                'Automating invoice creation, filing, and client communication',
-                'Smart daily summaries of new leads, tax filings, or renewal alerts',
-                'Email & text follow-ups customized to each client\'s tone, needs, and service history'
-            ],
-            benefits: [
-                'Operate 24/7 without lifting a finger',
-                'Cut repetitive workload by 50–80%',
-                'Eliminate data entry and human mistakes',
-                'Improve response time and client satisfaction',
-                'Scale faster — without hiring more staff'
-            ],
-            whoItsFor: [
-                'Businesses seeking to automate client communication',
-                'Firms overwhelmed by admin or data tasks',
-                'Individuals managing multiple jobs, filings, or policies',
-                'Teams aiming for more time and higher-quality service'
-            ]
-        },
-        {
-            id: 'technology-consulting',
-            icon: FaLaptopCode,
-            title: '3. Technology Consulting',
-            subtitle: 'Bridging business strategy with digital innovation.',
-            description: 'We help clients design, select, and implement technology solutions that are cost-effective, compliant, and custom-built to their unique needs.',
-            gradient: 'from-green-500 to-green-600',
-            whatWeDo: [
-                'Business Process & Technology Audit',
-                'Cloud Migration & System Integration',
-                'CRM, ERP, and Data Platform Consulting',
-                'IT Architecture Planning & Vendor Selection',
-                'Compliance & Cybersecurity Alignment',
-                'Business Intelligence Dashboarding',
-                'System Design for Growth & Automation'
-            ],
-            examples: [
-                'Migrating client files from local storage to a secure cloud-based system',
-                'Designing integrated dashboards that show insurance policies, tax filings, and financial summaries in one view',
-                'Creating automated internal workflows using Zapier, Google Workspace, or AI agents'
-            ],
-            benefits: [
-                'Unified data for better business insight',
-                'Enhanced security and compliance protection',
-                'Faster decision-making',
-                'Reduced overhead and IT cost',
-                'Scalable, future-ready technology foundation'
-            ],
-            whoItsFor: [
-                'Businesses modernizing operations or digital tools',
-                'Startups needing a technology roadmap',
-                'Enterprises seeking integration across departments',
-                'Individuals who want secure, automated financial visibility'
-            ]
-        },
-        {
-            id: 'ai-systems-implementation',
-            icon: FaPuzzlePiece,
-            title: '4. AI Systems Implementation & Integration',
-            subtitle: 'We don\'t just advise — we build.',
-            description: 'MRECAI and our technology partner NovaEdge Solutions Ltd. provide full implementation of AI-powered systems — from concept to deployment.',
-            gradient: 'from-orange-500 to-orange-600',
-            whatWeDo: [
-                'AI Software Development & Integration',
-                'API Connections & System Syncs',
-                'Lead Intelligence Engines (AI Scoring, Forecasting)',
-                'Custom AI Chatbots & Knowledge Assistants',
-                'Automated Reporting & Performance Dashboards',
-                'Financial & Risk Modelling Systems'
-            ],
-            examples: [
-                'AI systems that track and score every new lead in real-time',
-                'NLP bots that summarize client conversations for compliance',
-                'Predictive dashboards showing risk exposure or income trends'
-            ],
-            benefits: [
-                'End-to-end visibility of all operations',
-                'Reduced human dependency',
-                'Smarter, faster decision-making',
-                'Proven ROI through automation and intelligence'
-            ],
-            whoItsFor: [
-                'Businesses ready to implement AI solutions',
-                'Companies needing custom AI development',
-                'Organizations requiring system integration',
-                'Enterprises seeking competitive advantage through AI'
-            ]
-        },
-        {
-            id: 'digital-transformation',
-            icon: FaChartLine,
-            title: '5. Digital Transformation Strategy',
-            subtitle: 'Turn disruption into opportunity.',
-            description: 'We help you define a digital roadmap that maximizes the use of AI, automation, and cloud technology to create sustainable, competitive advantage.',
-            gradient: 'from-pink-500 to-pink-600',
-            whatWeDo: [
-                'Digital Process Redesign',
-                'Legacy System Modernization',
-                'AI-Driven Business Strategy',
-                'Data Analytics & Visualization Consulting',
-                'Cloud Migration & DevOps Planning'
-            ],
-            examples: [
-                'Building a digital-first insurance operation with automated renewals, AI chat support, and client dashboards',
-                'Helping an accounting firm automate document processing and lead intake',
-                'Designing cross-service client portals for financial and tax management'
-            ],
-            benefits: [
-                'Long-term cost reduction',
-                'Future-proof infrastructure',
-                'Data-driven growth',
-                'Higher scalability with lower stress'
-            ],
-            whoItsFor: [
-                'Companies undergoing digital transformation',
-                'Businesses with legacy systems',
-                'Organizations seeking modernization',
-                'Enterprises planning for the future'
-            ]
-        },
-        {
-            id: 'ai-for-individuals',
-            icon: FaUsers,
-            title: '6. AI for Individuals & Families',
-            subtitle: 'Make smarter financial decisions through AI.',
-            description: 'We empower individuals and families to leverage artificial intelligence for managing insurance, taxes, and personal finances.',
-            gradient: 'from-teal-500 to-teal-600',
-            whatWeDo: [
-                'Personalized AI budgeting tools',
-                'Automated tax filing reminders and tracking',
-                'AI-powered insurance policy comparison',
-                'Risk prediction and financial health scoring'
-            ],
-            examples: [
-                'AI-powered budget tracking that learns your spending patterns',
-                'Automated reminders for tax deadlines and insurance renewals',
-                'Smart policy comparison tools that find the best coverage for your needs',
-                'Financial health scoring with personalized recommendations'
-            ],
-            benefits: [
-                'Less stress, more clarity',
-                'Maximize refunds and coverage',
-                'Avoid missed deadlines and overpayments',
-                'Build long-term financial intelligence for your household'
-            ],
-            whoItsFor: [
-                'Individuals seeking financial clarity',
-                'Families managing complex finances',
-                'People wanting to automate personal finance',
-                'Anyone looking to optimize their financial decisions'
-            ]
-        }
-    ];
-
     return (
         <>
             <SEO
-                title="AI, Technology & Automation Consulting | MRECAI"
-                description="Comprehensive AI consulting services including artificial intelligence, automation, technology consulting, AI systems implementation, digital transformation, and AI for individuals & families."
+                title="AI & Automation Consulting | Intelligent Business Systems | MRE Consulting"
+                description="Transform your business with AI lead generation, automated follow-ups, and intelligent CRM systems. 24/7 sales agents and missed-call text back solutions."
                 canonical="/ai-consulting"
-                keywords="AI consulting, artificial intelligence, automation consulting, technology consulting, digital transformation, AI implementation, machine learning"
+                keywords="AI consulting, business automation, AI lead generation, 24/7 sales agents, missed-call text back, CRM automation, AI readiness audit"
                 schema={{
                     '@context': 'https://schema.org',
                     '@graph': [
-                        breadcrumbSchema([
-                            { name: 'Home', url: '/' },
-                            { name: 'Services', url: '/services' },
-                            { name: 'AI Consulting', url: '/ai-consulting' },
-                        ]),
+                        serviceSchemas.aiTechnology,
+                        faqSchema(faqs),
                     ],
                 }}
             />
 
-            <div className="pt-20">
-                {/* Breadcrumb */}
-                <div className="bg-gray-50 border-b border-gray-200">
-                    <div className="container-custom py-4">
-                        <div className="flex items-center text-sm text-gray-600">
-                            <Link to="/" className="hover:text-primary-600 transition-colors flex items-center">
-                                <FaHome className="mr-1" />
-                                Home
-                            </Link>
-                            <FaChevronRight className="mx-2 text-gray-400" />
-                            <Link to="/services" className="hover:text-primary-600 transition-colors">
-                                Services
-                            </Link>
-                            <FaChevronRight className="mx-2 text-gray-400" />
-                            <span className="text-navy-900 font-semibold">AI Consulting</span>
-                        </div>
-                    </div>
+            {/* Hero Section */}
+            <section className="relative pt-40 md:pt-44 pb-24 bg-gradient-to-br from-navy-900 via-primary-900 to-navy-900 text-white overflow-hidden">
+                {/* Animated Background */}
+                <div className="absolute inset-0">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary-600/20 via-transparent to-navy-900/40"></div>
+                    <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-primary-500/10 rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-navy-500/10 rounded-full blur-3xl"></div>
                 </div>
 
-                {/* Hero Section */}
-                <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-800 to-navy-900">
-                        <div className="absolute inset-0 bg-gradient-to-tr from-primary-600/20 via-transparent to-primary-500/20"></div>
-                        <div className="absolute inset-0 opacity-10">
-                            <div className="absolute top-0 left-0 w-full h-full" style={{
-                                backgroundImage: `radial-gradient(circle at 2px 2px, rgba(0, 168, 232, 0.3) 1px, transparent 0)`,
-                                backgroundSize: '50px 50px'
-                            }}></div>
-                        </div>
-                        <div className="absolute top-20 left-10 w-96 h-96 bg-primary-500/30 rounded-full mix-blend-multiply filter blur-3xl animate-float"></div>
-                        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary-400/20 rounded-full mix-blend-multiply filter blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
-                    </div>
-
-                    <div className="container-custom relative z-10 text-white text-center py-16">
+                <div className="container-custom relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.6 }}
                         >
-                            <motion.div
-                                className="inline-block mb-6"
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: 0.2, duration: 0.5 }}
-                            >
-                                <span className="inline-flex items-center px-4 py-2 bg-primary-500/20 border border-primary-400/30 rounded-full text-primary-300 text-sm font-semibold">
-                                    <FaRobot className="mr-2" />
-                                    Comprehensive AI Solutions
-                                </span>
-                            </motion.div>
-
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                                <span className="bg-gradient-to-r from-primary-400 via-primary-300 to-primary-500 bg-clip-text text-transparent">
-                                    AI, Technology & Automation Consulting
-                                </span>
+                            <div className="inline-block px-4 py-2 bg-primary-500/20 rounded-full border border-primary-400/30 mb-6">
+                                <span className="text-primary-300 font-semibold text-sm">🤖 AI-Powered Business Growth</span>
+                            </div>
+                            
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                                Intelligence That <span className="text-primary-400">Never Sleeps</span>
                             </h1>
-                            <p className="text-2xl md:text-3xl font-semibold mb-4">
-                                Reinventing What's Possible with Artificial Intelligence
+
+                            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                                Scale your revenue without scaling your headcount. Deploy intelligent systems that work 24/7 to capture leads, qualify prospects, and close deals.
                             </p>
-                            <p className="text-xl text-gray-200 max-w-4xl mx-auto leading-relaxed">
-                                Our AI & Technology Consulting division combines deep technical expertise with MRE's signature business intelligence, tax knowledge, and insurance insight.
-                            </p>
-                        </motion.div>
-                    </div>
-                </section>
 
-                {/* Overview Section */}
-                <section className="section-padding bg-white">
-                    <div className="container-custom">
-                        <div className="max-w-4xl mx-auto text-center mb-16">
-                            <motion.div
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
-                            >
-                                <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                                    This unique combination makes <strong className="text-primary-600">MRE Consulting & Insurance</strong> a true full-service partner — able to not only implement powerful AI systems but also ensure they're fully aligned with your operational, financial, and regulatory goals.
-                                </p>
-                            </motion.div>
-                        </div>
-
-                        {/* AI Services Grid */}
-                        <div className="space-y-16">
-                            {aiServices.map((service, index) => (
-                                <motion.div
-                                    key={service.id}
-                                    initial={{ opacity: 0, y: 40 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1, duration: 0.6 }}
-                                    className="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-xl p-8 md:p-12 border border-gray-100"
-                                >
-                                    {/* Service Header */}
-                                    <div className="flex items-start space-x-6 mb-8">
-                                        <motion.div
-                                            className={`flex-shrink-0 w-20 h-20 bg-gradient-to-r ${service.gradient} rounded-2xl flex items-center justify-center shadow-lg`}
-                                            whileHover={{ rotate: 360, scale: 1.1 }}
-                                            transition={{ duration: 0.6 }}
-                                        >
-                                            <service.icon className="text-4xl text-white" />
-                                        </motion.div>
-                                        <div className="flex-1">
-                                            <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-2">
-                                                {service.title}
-                                            </h2>
-                                            <p className="text-xl text-primary-600 font-semibold mb-3">
-                                                {service.subtitle}
-                                            </p>
-                                            <p className="text-lg text-gray-700 leading-relaxed">
-                                                {service.description}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    {/* Service Details Grid */}
-                                    <div className="grid md:grid-cols-2 gap-8">
-                                        {/* What We Do */}
-                                        <div>
-                                            <h3 className="text-xl font-bold text-navy-900 mb-4 flex items-center">
-                                                <FaLightbulb className="text-primary-600 mr-2" />
-                                                What We Do
-                                            </h3>
-                                            <ul className="space-y-2">
-                                                {service.whatWeDo.map((item, i) => (
-                                                    <li key={i} className="flex items-start text-gray-700">
-                                                        <FaCheck className="text-primary-500 mr-2 mt-1 flex-shrink-0" />
-                                                        <span>{item}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-
-                                        {/* Examples */}
-                                        <div>
-                                            <h3 className="text-xl font-bold text-navy-900 mb-4 flex items-center">
-                                                <FaRocket className="text-primary-600 mr-2" />
-                                                Examples
-                                            </h3>
-                                            <ul className="space-y-2">
-                                                {service.examples.map((item, i) => (
-                                                    <li key={i} className="flex items-start text-gray-700">
-                                                        <span className="text-primary-500 mr-2 flex-shrink-0">•</span>
-                                                        <span>{item}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-
-                                        {/* Benefits */}
-                                        <div>
-                                            <h3 className="text-xl font-bold text-navy-900 mb-4 flex items-center">
-                                                <FaShieldAlt className="text-primary-600 mr-2" />
-                                                Benefits to You
-                                            </h3>
-                                            <ul className="space-y-2">
-                                                {service.benefits.map((item, i) => (
-                                                    <li key={i} className="flex items-start text-gray-700">
-                                                        <span className="text-green-500 mr-2 flex-shrink-0">✓</span>
-                                                        <span>{item}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-
-                                        {/* Who It's For */}
-                                        <div>
-                                            <h3 className="text-xl font-bold text-navy-900 mb-4 flex items-center">
-                                                <FaUsers className="text-primary-600 mr-2" />
-                                                Who It's For
-                                            </h3>
-                                            <ul className="space-y-2">
-                                                {service.whoItsFor.map((item, i) => (
-                                                    <li key={i} className="flex items-start text-gray-700">
-                                                        <span className="text-primary-500 mr-2 flex-shrink-0">✅</span>
-                                                        <span>{item}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Why Choose MRECAI for AI */}
-                <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
-                    <div className="container-custom">
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                            className="text-center mb-12"
-                        >
-                            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                                Why Choose <span className="gradient-text">MRE Consulting & Insurance</span>
-                            </h2>
-                            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                                for AI & Technology Consulting
-                            </p>
-                        </motion.div>
-
-                        <div className="max-w-4xl mx-auto">
-                            <motion.div
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
-                                className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-primary-100"
-                            >
-                                <p className="text-xl text-gray-700 leading-relaxed mb-8 text-center">
-                                    We're not just consultants — we're <strong className="text-primary-600">architects of intelligent systems</strong> designed to save time, improve precision, and drive growth.
-                                </p>
-
-                                <div className="grid md:grid-cols-2 gap-6">
-                                    {[
-                                        { icon: '🎯', text: 'Business-first strategy, technology-second approach' },
-                                        { icon: '🔗', text: 'Deep insurance, tax, and finance integration' },
-                                        { icon: '👥', text: 'Human oversight with AI-driven intelligence' },
-                                        { icon: '🚀', text: 'Full-service: from idea → automation → execution' },
-                                        { icon: '🔒', text: 'Secure, compliant, and personalized to you' }
-                                    ].map((item, index) => (
-                                        <motion.div
-                                            key={index}
-                                            initial={{ opacity: 0, x: -20 }}
-                                            whileInView={{ opacity: 1, x: 0 }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: index * 0.1, duration: 0.5 }}
-                                            className="flex items-center space-x-3 bg-gradient-to-r from-primary-50 to-white p-4 rounded-lg border border-primary-100"
-                                        >
-                                            <span className="text-3xl flex-shrink-0">{item.icon}</span>
-                                            <span className="text-gray-700 font-medium">{item.text}</span>
-                                        </motion.div>
-                                    ))}
-                                </div>
-
-                                <p className="text-xl text-center text-gray-700 mt-8 italic">
-                                    At MRE Consulting & Insurance, we make technology <strong className="text-primary-600">human</strong> — practical, profitable, and purpose-driven.
-                                </p>
-                            </motion.div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* CTA Section */}
-                <section className="section-padding bg-gradient-to-br from-navy-900 to-navy-800 text-white">
-                    <div className="container-custom">
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                            className="text-center max-w-3xl mx-auto"
-                        >
-                            <h2 className="text-4xl font-bold mb-6">Let's Build Your Future Together</h2>
-                            <p className="text-xl text-gray-200 mb-4">
-                                AI isn't the future — it's the present.
-                            </p>
-                            <p className="text-lg text-gray-300 mb-8">
-                                If you're ready to modernize, automate, and grow with confidence, our team at MRE Consulting & Insurance will guide you from strategy to implementation.
-                            </p>
-                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <div className="flex flex-col sm:flex-row gap-4 mb-8">
                                 <Link
                                     to="/book-now"
-                                    className="inline-flex items-center justify-center px-8 py-4 bg-white text-navy-900 font-bold rounded-xl hover:shadow-xl transition-all"
+                                    className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-navy-900 bg-white rounded-xl hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-xl"
                                 >
-                                    <FaCalendarAlt className="mr-2" />
-                                    Schedule Consultation
-                                </Link>
-                                <Link
-                                    to="/services"
-                                    className="inline-flex items-center justify-center px-8 py-4 border-2 border-white/40 rounded-xl hover:bg-white hover:text-navy-900 transition-all font-bold"
-                                >
-                                    View All Services
+                                    Book Free Strategy Call
                                     <FaArrowRight className="ml-2" />
                                 </Link>
+                                <Link
+                                    to="/contact"
+                                    className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white border-2 border-white/30 rounded-xl hover:bg-white/10 transition-all duration-300"
+                                >
+                                    Get a Quick Quote
+                                </Link>
+                            </div>
+
+                            {/* Trust Indicators */}
+                            <div className="flex flex-wrap gap-6 text-sm">
+                                <div className="flex items-center gap-2">
+                                    <FaCheckCircle className="text-primary-400" />
+                                    <span className="text-gray-300">90-Day ROI</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <FaCheckCircle className="text-primary-400" />
+                                    <span className="text-gray-300">SOC2 Compliant</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <FaCheckCircle className="text-primary-400" />
+                                    <span className="text-gray-300">180+ Clients</span>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, x: 30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            className="hidden lg:block"
+                        >
+                            <div className="relative">
+                                <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+                                    <div className="space-y-4">
+                                        <div className="flex items-center gap-4 bg-white/10 rounded-xl p-4">
+                                            <div className="w-12 h-12 bg-primary-500 rounded-lg flex items-center justify-center">
+                                                <FaBrain className="text-white text-xl" />
+                                            </div>
+                                            <div>
+                                                <div className="text-white font-bold">AI Sales Agent</div>
+                                                <div className="text-gray-300 text-sm">24/7 Lead Qualification</div>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center gap-4 bg-white/10 rounded-xl p-4">
+                                            <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center">
+                                                <FaChartLine className="text-white text-xl" />
+                                            </div>
+                                            <div>
+                                                <div className="text-white font-bold">Smart Automation</div>
+                                                <div className="text-gray-300 text-sm">Eliminate Manual Tasks</div>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center gap-4 bg-white/10 rounded-xl p-4">
+                                            <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
+                                                <FaRocket className="text-white text-xl" />
+                                            </div>
+                                            <div>
+                                                <div className="text-white font-bold">Rapid Deployment</div>
+                                                <div className="text-gray-300 text-sm">Live in 30-60 Days</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </motion.div>
                     </div>
-                </section>
-            </div>
+                </div>
+            </section>
+
+            {/* Stats Bar */}
+            <section className="py-8 bg-white border-b border-gray-200">
+                <div className="container-custom">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        {[
+                            { value: '180+', label: 'Clients Served' },
+                            { value: '90 Days', label: 'Avg. ROI Timeline' },
+                            { value: '24/7', label: 'AI Availability' },
+                            { value: '98%', label: 'Success Rate' }
+                        ].map((stat, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1 }}
+                                className="text-center"
+                            >
+                                <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-2">{stat.value}</div>
+                                <div className="text-gray-600 text-sm">{stat.label}</div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Partnership Callout */}
+            <section className="py-16 bg-gradient-to-br from-primary-50 to-white">
+                <div className="container-custom">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="max-w-4xl mx-auto text-center"
+                    >
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-100 rounded-full mb-6">
+                            <FaUsers className="text-primary-600" />
+                            <span className="text-primary-700 font-semibold text-sm">Strategic Partnership</span>
+                        </div>
+                        <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-6">
+                            Powered by NovaEdge Solutions
+                        </h2>
+                        <p className="text-xl text-gray-700 leading-relaxed">
+                            Through our partnership with <strong className="text-primary-600">NovaEdge Solutions</strong>, we deliver enterprise-grade AI automation for the SMB market—intelligent systems that capture leads, qualify prospects, and book appointments while you focus on closing deals.
+                        </p>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Services Grid */}
+            <section className="py-20 bg-white">
+                <div className="container-custom">
+                    <div className="text-center mb-16">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
+                                AI Solutions That Drive Results
+                            </h2>
+                            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                                From lead generation to customer service, we deploy intelligent systems that work around the clock
+                            </p>
+                        </motion.div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        {[
+                            {
+                                icon: FaBrain,
+                                title: 'AI Sales Agents',
+                                description: 'Custom-trained models that engage leads, answer questions, and book appointments via Web, SMS, and Email—24/7.',
+                                gradient: 'from-blue-500 to-blue-600',
+                                bgColor: 'bg-blue-50',
+                                iconBg: 'bg-blue-100',
+                                iconColor: 'text-blue-600'
+                            },
+                            {
+                                icon: FaRobot,
+                                title: 'Missed-Call Text Back',
+                                description: 'Instantly recover lost opportunities with automated SMS sequences when you can\'t reach the phone.',
+                                gradient: 'from-purple-500 to-purple-600',
+                                bgColor: 'bg-purple-50',
+                                iconBg: 'bg-purple-100',
+                                iconColor: 'text-purple-600'
+                            },
+                            {
+                                icon: FaLightbulb,
+                                title: 'Lead Reactivation',
+                                description: 'AI-powered outreach to "dead" leads that uncovers hidden revenue without manual effort.',
+                                gradient: 'from-green-500 to-green-600',
+                                bgColor: 'bg-green-50',
+                                iconBg: 'bg-green-100',
+                                iconColor: 'text-green-600'
+                            },
+                            {
+                                icon: FaCogs,
+                                title: 'CRM Automation',
+                                description: 'Consolidated systems that automatically track, score, and move leads through your pipeline.',
+                                gradient: 'from-orange-500 to-orange-600',
+                                bgColor: 'bg-orange-50',
+                                iconBg: 'bg-orange-100',
+                                iconColor: 'text-orange-600'
+                            },
+                            {
+                                icon: FaShieldAlt,
+                                title: 'AI Governance',
+                                description: 'Secure, compliant implementations that protect your sensitive business and client data.',
+                                gradient: 'from-red-500 to-red-600',
+                                bgColor: 'bg-red-50',
+                                iconBg: 'bg-red-100',
+                                iconColor: 'text-red-600'
+                            },
+                            {
+                                icon: FaRocket,
+                                title: 'Digital Transformation',
+                                description: 'Comprehensive roadmap for modernizing every department with AI-native workflows.',
+                                gradient: 'from-navy-500 to-navy-600',
+                                bgColor: 'bg-navy-50',
+                                iconBg: 'bg-navy-100',
+                                iconColor: 'text-navy-600'
+                            },
+                        ].map((service, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1 }}
+                                className="group relative"
+                            >
+                                <div className="h-full bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                                    <div className={`w-16 h-16 ${service.iconBg} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                                        <service.icon className={`text-3xl ${service.iconColor}`} />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-navy-900 mb-3">{service.title}</h3>
+                                    <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* How It Works */}
+            <section className="py-20 bg-gray-50">
+                <div className="container-custom">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
+                            How We Deploy AI in Your Business
+                        </h2>
+                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                            A proven 4-step process to transform your operations
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                        {[
+                            {
+                                step: '01',
+                                title: 'Discovery',
+                                description: 'AI Readiness Audit to identify high-ROI automation opportunities'
+                            },
+                            {
+                                step: '02',
+                                title: 'Design',
+                                description: 'Custom AI strategy tailored to your business processes'
+                            },
+                            {
+                                step: '03',
+                                title: 'Deploy',
+                                description: 'Implementation and integration with your existing systems'
+                            },
+                            {
+                                step: '04',
+                                title: 'Optimize',
+                                description: 'Continuous monitoring and improvement for maximum ROI'
+                            }
+                        ].map((step, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1 }}
+                                className="relative"
+                            >
+                                <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200 h-full">
+                                    <div className="text-5xl font-bold text-primary-200 mb-4">{step.step}</div>
+                                    <h3 className="text-xl font-bold text-navy-900 mb-3">{step.title}</h3>
+                                    <p className="text-gray-600 leading-relaxed">{step.description}</p>
+                                </div>
+                                {index < 3 && (
+                                    <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+                                        <FaArrowRight className="text-primary-300 text-2xl" />
+                                    </div>
+                                )}
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* FAQ Section */}
+            <section className="py-20 bg-white">
+                <div className="container-custom max-w-4xl">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
+                            Common Questions
+                        </h2>
+                        <p className="text-xl text-gray-600">Everything you need to know about AI implementation</p>
+                    </div>
+                    <div className="space-y-6">
+                        {faqs.map((faq, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.05 }}
+                                className="bg-gray-50 rounded-xl p-6 border border-gray-200 hover:border-primary-300 transition-colors"
+                            >
+                                <h3 className="text-lg font-bold text-navy-900 mb-3 flex items-start gap-3">
+                                    <span className="text-primary-500 flex-shrink-0">Q:</span>
+                                    <span>{faq.question}</span>
+                                </h3>
+                                <p className="text-gray-700 leading-relaxed pl-8">{faq.answer}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Final CTA */}
+            <section className="py-24 bg-gradient-to-br from-navy-900 via-primary-900 to-navy-900 text-white relative overflow-hidden">
+                <div className="absolute inset-0">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary-600/20 via-transparent to-navy-900/40"></div>
+                    <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-primary-500/10 rounded-full blur-3xl"></div>
+                </div>
+                
+                <div className="container-custom relative z-10 text-center">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-3xl md:text-5xl font-bold mb-6">
+                            Ready to Scale with AI?
+                        </h2>
+                        <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                            The best time to automate was yesterday. The second best time is now.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <Link
+                                to="/book-now"
+                                className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-navy-900 bg-white rounded-xl hover:bg-gray-100 transition-all hover:scale-105 shadow-xl"
+                            >
+                                Book Free Strategy Call
+                                <FaArrowRight className="ml-2" />
+                            </Link>
+                            <Link
+                                to="/contact"
+                                className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white border-2 border-white/30 rounded-xl hover:bg-white/10 transition-all"
+                            >
+                                Get a Quick Quote
+                            </Link>
+                        </div>
+                        <div className="mt-8">
+                            <Link to="/services" className="text-primary-300 hover:text-primary-200 inline-flex items-center font-semibold transition-colors">
+                                View All Services <FaArrowRight className="ml-2" />
+                            </Link>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
         </>
     );
 };

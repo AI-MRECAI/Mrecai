@@ -59,7 +59,7 @@ How AI & Automation Are Transforming Every Industry
 ================================================================================
 
 A Flagship Executive Report by MRE Consulting & Insurance
-www.MRECAI.com | 929-919-3574 | Matthew@MRECAI.com
+www.MRECAI.com | 929-702-2818 | Matthew@MRECAI.com
 
 ================================================================================
 EXECUTIVE SUMMARY
@@ -160,7 +160,7 @@ CONTACT INFORMATION
 ================================================================================
 
 MRE Consulting & Insurance
-Phone: 929-919-3574
+Phone: 929-702-2818
 Email: Matthew@MRECAI.com
 Website: www.MRECAI.com
 
@@ -184,7 +184,7 @@ Building the Modern Reputation Engine
 ================================================================================
 
 A Flagship Executive White Paper by MRE Consulting & Insurance
-www.MRECAI.com | 929-919-3574 | Matthew@MRECAI.com
+www.MRECAI.com | 929-702-2818 | Matthew@MRECAI.com
 
 ================================================================================
 EXECUTIVE SUMMARY
@@ -301,7 +301,7 @@ CONTACT INFORMATION
 ================================================================================
 
 MRE Consulting & Insurance
-Phone: 929-919-3574
+Phone: 929-702-2818
 Email: Matthew@MRECAI.com
 Website: www.MRECAI.com
 
@@ -325,7 +325,7 @@ How AI and Automation Are Transforming Operations
 ================================================================================
 
 A Comprehensive White Paper by MRE Consulting & Insurance
-www.MRECAI.com | 929-919-3574 | Matthew@MRECAI.com
+www.MRECAI.com | 929-702-2818 | Matthew@MRECAI.com
 
 ================================================================================
 EXECUTIVE SUMMARY
@@ -471,7 +471,7 @@ CONTACT INFORMATION
 ================================================================================
 
 MRE Consulting & Insurance
-Phone: 929-919-3574
+Phone: 929-702-2818
 Email: Matthew@MRECAI.com
 Website: www.MRECAI.com
 
@@ -582,7 +582,7 @@ const addCoverPage = (doc: jsPDF, paper: WhitePaperContent): void => {
   doc.text('www.MRECAI.com', centerX, yPos, { align: 'center' });
 
   yPos += 6;
-  doc.text('929-919-3574 | Matthew@MRECAI.com', centerX, yPos, { align: 'center' });
+  doc.text('929-702-2818 | Matthew@MRECAI.com', centerX, yPos, { align: 'center' });
 
   // Footer badge
   const badgeY = pageHeight - 40;
@@ -743,4 +743,713 @@ export const generateAndDownloadPDF = (paperId: string): void => {
 
   // Save the PDF
   doc.save(paper.filename);
+};
+
+// Privacy Policy PDF Generator
+export const generatePrivacyPolicyPDF = (): void => {
+  const doc = new jsPDF({
+    orientation: 'portrait',
+    unit: 'mm',
+    format: 'a4',
+    compress: true
+  });
+
+  const { pageWidth, pageHeight, margin } = PDF_CONFIG;
+  const maxWidth = pageWidth - margin.left - margin.right;
+  let yPos = margin.top;
+
+  // Helper function to check page break
+  const checkPageBreak = (neededSpace: number = 15): boolean => {
+    if (yPos + neededSpace > pageHeight - margin.bottom) {
+      doc.addPage();
+      yPos = margin.top;
+      return true;
+    }
+    return false;
+  };
+
+  // Helper function to add wrapped text
+  const addText = (text: string, fontSize: number, isBold: boolean = false, indent: number = 0): void => {
+    doc.setFontSize(fontSize);
+    doc.setFont('helvetica', isBold ? 'bold' : 'normal');
+    const lines = doc.splitTextToSize(text, maxWidth - indent);
+    
+    lines.forEach((line: string) => {
+      checkPageBreak();
+      doc.text(line, margin.left + indent, yPos);
+      yPos += fontSize * 0.4;
+    });
+  };
+
+  // Cover Page - Header with branding
+  doc.setFillColor(26, 35, 126); // Navy blue
+  doc.rect(0, 0, pageWidth, 50, 'F');
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(28);
+  doc.setFont('helvetica', 'bold');
+  doc.text('PRIVACY POLICY', pageWidth / 2, 25, { align: 'center' });
+
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'normal');
+  doc.text('MRE Consulting & Insurance', pageWidth / 2, 38, { align: 'center' });
+
+  yPos = 60;
+
+  // Company Information Box
+  doc.setTextColor(0, 0, 0);
+  doc.setFillColor(245, 247, 250);
+  doc.roundedRect(margin.left, yPos, maxWidth, 55, 2, 2, 'F');
+
+  yPos += 10;
+  doc.setFontSize(11);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Effective Date:', margin.left + 5, yPos);
+  doc.setFont('helvetica', 'normal');
+  doc.text('October 31, 2025', margin.left + 45, yPos);
+
+  yPos += 8;
+  doc.setFont('helvetica', 'bold');
+  doc.text('Company:', margin.left + 5, yPos);
+  doc.setFont('helvetica', 'normal');
+  doc.text('MRE Consulting & Insurance', margin.left + 45, yPos);
+
+  yPos += 8;
+  doc.setFont('helvetica', 'bold');
+  doc.text('Address:', margin.left + 5, yPos);
+  doc.setFont('helvetica', 'normal');
+  doc.text('1 Willow Road Place, Great Neck, NY 11021', margin.left + 45, yPos);
+
+  yPos += 8;
+  doc.setFont('helvetica', 'bold');
+  doc.text('Phone:', margin.left + 5, yPos);
+  doc.setFont('helvetica', 'normal');
+  doc.text('929-702-2818', margin.left + 45, yPos);
+
+  yPos += 8;
+  doc.setFont('helvetica', 'bold');
+  doc.text('Website:', margin.left + 5, yPos);
+  doc.setFont('helvetica', 'normal');
+  doc.text('www.mrecai.com', margin.left + 45, yPos);
+
+  yPos += 8;
+  doc.setFont('helvetica', 'bold');
+  doc.text('Privacy Contact:', margin.left + 5, yPos);
+  doc.setFont('helvetica', 'normal');
+  doc.text('mathew@mrecai.com', margin.left + 45, yPos);
+
+  yPos += 20;
+
+  // Section 1: Scope & Acceptance
+  checkPageBreak(25);
+  doc.setFillColor(26, 35, 126);
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('1. SCOPE & ACCEPTANCE', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  addText(
+    'This Privacy Policy explains how we collect, use, disclose, and protect information when you visit our website, communicate with us, or use our consulting and insurance services (the "Services"). By interacting with the Services, you agree to this Policy to the maximum extent permitted by law.',
+    10
+  );
+  yPos += 8;
+
+  // Section 2: What We Collect
+  checkPageBreak(25);
+  doc.setFillColor(26, 35, 126);
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('2. WHAT WE COLLECT', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  const collectItems = [
+    { label: 'Identifiers & Contact:', desc: 'name, email, phone, address, professional details.' },
+    { label: 'Insurance/Financial:', desc: 'underwriting inputs, applications, policy data, loss runs, claims history, billing details you provide or authorize.' },
+    { label: 'Technical/Usage:', desc: 'IP address, device/OS/browser, pages viewed, timestamps, session IDs, approximate location, cookie and pixel data.' },
+    { label: 'Content & Files:', desc: 'messages, recordings (with notice), forms, uploads, signatures.' },
+    { label: 'Partner/Carrier Data:', desc: 'quoting status, bind/issue information, endorsements.' },
+    { label: 'AI Interaction Data:', desc: 'preference signals, form responses, engagement context derived from AI-assisted workflows.' }
+  ];
+
+  collectItems.forEach(item => {
+    checkPageBreak(12);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
+    doc.text('•', margin.left, yPos);
+    doc.text(item.label, margin.left + 5, yPos);
+    yPos += 5;
+    doc.setFont('helvetica', 'normal');
+    addText(item.desc, 10, false, 10);
+    yPos += 3;
+  });
+  yPos += 5;
+
+  // Section 3: Sources of Information
+  checkPageBreak(25);
+  doc.setFillColor(26, 35, 126);
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('3. SOURCES OF INFORMATION', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  const sources = [
+    'Directly from you (forms, calls, emails).',
+    'Service providers & vendors (hosting, analytics, communications).',
+    'Insurance ecosystem (carriers, MGAs, TPAs, other brokers, loss-run services).',
+    'Public/permissioned sources (government records, business databases, lead enrichment).'
+  ];
+
+  sources.forEach(source => {
+    checkPageBreak(8);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.text('•', margin.left, yPos);
+    addText(source, 10, false, 5);
+    yPos += 2;
+  });
+  yPos += 5;
+
+  // Section 4: How We Use Information
+  checkPageBreak(25);
+  doc.setFillColor(26, 35, 126);
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('4. HOW WE USE INFORMATION', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  const uses = [
+    'Deliver, maintain, and improve the Services; obtain quotes; process applications; coordinate with carriers; provide support; prevent fraud; ensure security; analyze usage; personalize content; train our teams and systems.',
+    'Marketing & Education: send newsletters, reminders, promotions, updates, and content relevant to your interests.',
+    'Compliance: legal/regulatory obligations, audits, and lawful requests.'
+  ];
+
+  uses.forEach(use => {
+    checkPageBreak(10);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.text('•', margin.left, yPos);
+    addText(use, 10, false, 5);
+    yPos += 3;
+  });
+  yPos += 5;
+
+  // Section 5: SMS Messaging & Consent
+  checkPageBreak(25);
+  doc.setFillColor(26, 35, 126);
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('5. SMS MESSAGING & CONSENT', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  addText(
+    'SMS messages are sent only to users who explicitly opt in. When you provide your phone number on our website, you will be presented with an optional SMS consent checkbox.',
+    10
+  );
+  yPos += 5;
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(10);
+  checkPageBreak();
+  doc.text('We may send SMS messages for:', margin.left, yPos);
+  yPos += 6;
+
+  const smsItems = [
+    'Appointment updates and scheduling',
+    'Quote follow-ups and inquiries',
+    'Customer support and assistance',
+    'Information you requested'
+  ];
+
+  smsItems.forEach(item => {
+    checkPageBreak(8);
+    doc.setFont('helvetica', 'normal');
+    doc.text('•', margin.left, yPos);
+    addText(item, 10, false, 5);
+    yPos += 2;
+  });
+  yPos += 5;
+
+  // Important Note Box
+  checkPageBreak(20);
+  doc.setFillColor(255, 243, 205);
+  doc.roundedRect(margin.left, yPos - 3, maxWidth, 20, 2, 2, 'F');
+  yPos += 3;
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(10);
+  doc.text('Important Note:', margin.left + 3, yPos);
+  yPos += 6;
+  doc.setFont('helvetica', 'normal');
+  addText(
+    'SMS consent is NOT required to use our services. Reply STOP to unsubscribe anytime. Message & data rates may apply.',
+    10,
+    false,
+    3
+  );
+  yPos += 10;
+
+  // Section 6: Sharing & Disclosure
+  checkPageBreak(25);
+  doc.setFillColor(26, 35, 126);
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('6. SHARING & DISCLOSURE', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  addText(
+    'We may share information with insurance carriers, service providers, business partners, and as required by law. We do not sell your personal information.',
+    10
+  );
+  yPos += 8;
+
+  // Section 7: Data Security
+  checkPageBreak(25);
+  doc.setFillColor(26, 35, 126);
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('7. DATA SECURITY', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  addText(
+    'We implement industry-standard security measures including encryption, access controls, and regular security assessments to protect your information.',
+    10
+  );
+  yPos += 8;
+
+  // Section 8: Your Rights
+  checkPageBreak(25);
+  doc.setFillColor(26, 35, 126);
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('8. YOUR RIGHTS', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  addText(
+    'You have the right to access, correct, delete, or restrict the use of your personal information. Contact us to exercise these rights.',
+    10
+  );
+  yPos += 8;
+
+  // Footer
+  checkPageBreak(35);
+  yPos = pageHeight - 35;
+  doc.setDrawColor(200, 200, 200);
+  doc.line(margin.left, yPos, pageWidth - margin.right, yPos);
+  yPos += 8;
+
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'bold');
+  doc.text('For questions or concerns about this Privacy Policy, please contact us:', margin.left, yPos);
+  yPos += 7;
+
+  doc.setFont('helvetica', 'normal');
+  doc.text('Email: mathew@mrecai.com  |  Phone: 929-702-2818', margin.left, yPos);
+  yPos += 10;
+
+  doc.setFontSize(9);
+  doc.setTextColor(128, 128, 128);
+  doc.text(
+    `© ${new Date().getFullYear()} MRE Consulting & Insurance. All rights reserved.`,
+    pageWidth / 2,
+    yPos,
+    { align: 'center' }
+  );
+
+  // Add page numbers to all pages
+  const totalPages = doc.getNumberOfPages();
+  for (let i = 1; i <= totalPages; i++) {
+    doc.setPage(i);
+    doc.setFontSize(8);
+    doc.setTextColor(128, 128, 128);
+    doc.text(
+      `Page ${i} of ${totalPages}`,
+      pageWidth - margin.right,
+      pageHeight - 10,
+      { align: 'right' }
+    );
+  }
+
+  // Save the PDF
+  doc.save('MRE_Privacy_Policy.pdf');
+};
+
+// Terms of Service PDF Generator
+export const generateTermsOfServicePDF = (): void => {
+  const doc = new jsPDF({
+    orientation: 'portrait',
+    unit: 'mm',
+    format: 'a4',
+    compress: true
+  });
+
+  const { pageWidth, pageHeight, margin } = PDF_CONFIG;
+  const maxWidth = pageWidth - margin.left - margin.right;
+  let yPos = margin.top;
+
+  // Helper function to check page break
+  const checkPageBreak = (neededSpace: number = 15): boolean => {
+    if (yPos + neededSpace > pageHeight - margin.bottom) {
+      doc.addPage();
+      yPos = margin.top;
+      return true;
+    }
+    return false;
+  };
+
+  // Helper function to add wrapped text
+  const addText = (text: string, fontSize: number, isBold: boolean = false, indent: number = 0): void => {
+    doc.setFontSize(fontSize);
+    doc.setFont('helvetica', isBold ? 'bold' : 'normal');
+    const lines = doc.splitTextToSize(text, maxWidth - indent);
+    
+    lines.forEach((line: string) => {
+      checkPageBreak();
+      doc.text(line, margin.left + indent, yPos);
+      yPos += fontSize * 0.4;
+    });
+  };
+
+  // Cover Page - Header with branding
+  doc.setFillColor(26, 35, 126); // Navy blue
+  doc.rect(0, 0, pageWidth, 50, 'F');
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(28);
+  doc.setFont('helvetica', 'bold');
+  doc.text('TERMS OF SERVICE', pageWidth / 2, 25, { align: 'center' });
+
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'normal');
+  doc.text('MRE Consulting & Insurance', pageWidth / 2, 38, { align: 'center' });
+
+  yPos = 60;
+
+  // Company Information Box
+  doc.setTextColor(0, 0, 0);
+  doc.setFillColor(245, 247, 250);
+  doc.roundedRect(margin.left, yPos, maxWidth, 40, 2, 2, 'F');
+
+  yPos += 10;
+  doc.setFontSize(11);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Effective Date:', margin.left + 5, yPos);
+  doc.setFont('helvetica', 'normal');
+  doc.text('February 20, 2026', margin.left + 45, yPos);
+
+  yPos += 8;
+  doc.setFont('helvetica', 'bold');
+  doc.text('Company:', margin.left + 5, yPos);
+  doc.setFont('helvetica', 'normal');
+  doc.text('MRE Consulting & Insurance', margin.left + 45, yPos);
+
+  yPos += 8;
+  doc.setFont('helvetica', 'bold');
+  doc.text('Jurisdiction:', margin.left + 5, yPos);
+  doc.setFont('helvetica', 'normal');
+  doc.text('State of New York', margin.left + 45, yPos);
+
+  yPos += 8;
+  doc.setFont('helvetica', 'bold');
+  doc.text('Contact:', margin.left + 5, yPos);
+  doc.setFont('helvetica', 'normal');
+  doc.text('mathew@mrecai.com', margin.left + 45, yPos);
+
+  yPos += 20;
+
+  // Section 1: Acceptance of Terms
+  checkPageBreak(25);
+  doc.setFillColor(26, 35, 126);
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('1. ACCEPTANCE OF TERMS', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  addText(
+    'By accessing or using our website and services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.',
+    10
+  );
+  yPos += 8;
+
+  // Section 2: Services Description
+  checkPageBreak(25);
+  doc.setFillColor(26, 35, 126);
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('2. SERVICES DESCRIPTION', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  addText(
+    'MRE Consulting & Insurance provides financial consulting, insurance brokerage, tax planning, and AI-powered business automation services. All services are subject to availability and may be modified or discontinued at any time.',
+    10
+  );
+  yPos += 8;
+
+  // Section 3: SMS Messaging Terms & Conditions
+  checkPageBreak(25);
+  doc.setFillColor(255, 152, 0); // Orange for important section
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('3. SMS MESSAGING TERMS & CONDITIONS', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  addText(
+    'MRE Consulting & Insurance offers SMS text messaging services to provide appointment reminders, scheduling updates, customer support, and service-related communications. By providing your mobile phone number and opting in to receive SMS messages, you agree to the following terms:',
+    10
+  );
+  yPos += 5;
+
+  const smsTerms = [
+    'Program Description: You will receive SMS messages related to appointment scheduling, appointment reminders, customer support responses, and service updates. Message frequency varies based on your interaction with our services.',
+    'Opt-Out Instructions: You can cancel the SMS service at any time by texting STOP to our number. After you send STOP, we will send you a confirmation message that you have been unsubscribed. You will no longer receive SMS messages from us unless you opt in again.',
+    'Help & Support: If you are experiencing issues with the messaging program, reply with HELP for assistance, or contact us directly at mathew@mrecai.com or 929-702-2818.',
+    'Message & Data Rates: Message and data rates may apply for any messages sent to you from us and to us from you. Please contact your wireless provider for details about your text and data plan.',
+    'Carrier Liability: Carriers are not liable for delayed or undelivered messages.',
+    'Consent Requirements: You represent that you are the owner or authorized user of the mobile number you provide and that you voluntarily opt in to receive messages. Consent is not required to purchase or use our services.',
+    'Privacy: Your mobile information will be used in accordance with our Privacy Policy (available at https://www.mrecai.com/privacy-policy). We do not sell, rent, or share your SMS opt-in data with third parties for marketing purposes.'
+  ];
+
+  smsTerms.forEach(item => {
+    checkPageBreak(10);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.text('•', margin.left, yPos);
+    addText(item, 10, false, 5);
+    yPos += 2;
+  });
+  yPos += 5;
+
+  // Section 4: User Responsibilities
+  checkPageBreak(25);
+  doc.setFillColor(26, 35, 126);
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('3. USER RESPONSIBILITIES', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  const responsibilities = [
+    'Provide accurate and complete information',
+    'Maintain the confidentiality of your account credentials',
+    'Comply with all applicable laws and regulations',
+    'Not misuse or abuse our services',
+    'Promptly update any changes to your information'
+  ];
+
+  responsibilities.forEach(item => {
+    checkPageBreak(8);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.text('•', margin.left, yPos);
+    addText(item, 10, false, 5);
+    yPos += 2;
+  });
+  yPos += 5;
+
+  // Section 5: Professional Services Disclaimer
+  checkPageBreak(25);
+  doc.setFillColor(255, 152, 0); // Orange for warning
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('5. PROFESSIONAL SERVICES DISCLAIMER', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  addText(
+    'Our services are provided for informational and advisory purposes. We are not liable for decisions made based on our recommendations. You should consult with appropriate professionals before making financial or legal decisions.',
+    10,
+    true
+  );
+  yPos += 8;
+
+  // Section 6: Payment Terms
+  checkPageBreak(25);
+  doc.setFillColor(26, 35, 126);
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('6. PAYMENT TERMS', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  const paymentTerms = [
+    'Fees are due as specified in your service agreement',
+    'Late payments may incur additional charges',
+    'Refunds are subject to our refund policy',
+    'We reserve the right to modify pricing with notice'
+  ];
+
+  paymentTerms.forEach(item => {
+    checkPageBreak(8);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.text('•', margin.left, yPos);
+    addText(item, 10, false, 5);
+    yPos += 2;
+  });
+  yPos += 5;
+
+  // Section 7: Intellectual Property
+  checkPageBreak(25);
+  doc.setFillColor(26, 35, 126);
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('7. INTELLECTUAL PROPERTY', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  addText(
+    'All content, trademarks, and materials on our website are owned by MRE Consulting & Insurance or our licensors. You may not reproduce, distribute, or create derivative works without our express written permission.',
+    10
+  );
+  yPos += 8;
+
+  // Section 8: Limitation of Liability
+  checkPageBreak(25);
+  doc.setFillColor(255, 152, 0); // Orange for warning
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('8. LIMITATION OF LIABILITY', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  addText(
+    'To the maximum extent permitted by law, MRE Consulting & Insurance shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our services. This includes but is not limited to carrier delays, undelivered messages, technical errors, or third-party system outages related to SMS messaging services.',
+    10,
+    true
+  );
+  yPos += 8;
+
+  // Section 9: Termination
+  checkPageBreak(25);
+  doc.setFillColor(26, 35, 126);
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('9. TERMINATION', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  addText(
+    'We reserve the right to terminate or suspend access to our services at any time, with or without cause, with or without notice. Upon termination, your right to use the services will immediately cease.',
+    10
+  );
+  yPos += 8;
+
+  // Section 10: Governing Law & Dispute Resolution
+  checkPageBreak(25);
+  doc.setFillColor(26, 35, 126);
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('10. GOVERNING LAW & DISPUTE RESOLUTION', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  addText(
+    'These Terms shall be governed by the laws of the State of New York. Any disputes shall be resolved through binding arbitration in New York County, NY, administered by the American Arbitration Association (AAA).',
+    10
+  );
+  yPos += 8;
+
+  // Section 11: Changes to Terms
+  checkPageBreak(25);
+  doc.setFillColor(26, 35, 126);
+  doc.roundedRect(margin.left, yPos - 5, maxWidth, 10, 1, 1, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('11. CHANGES TO TERMS', margin.left + 3, yPos + 2);
+  yPos += 12;
+
+  doc.setTextColor(0, 0, 0);
+  addText(
+    'We may update these Terms of Service from time to time. Continued use of our services after changes constitutes acceptance of the modified terms. We will notify you of significant changes via email or website notice.',
+    10
+  );
+  yPos += 8;
+
+  // Footer
+  checkPageBreak(35);
+  yPos = pageHeight - 35;
+  doc.setDrawColor(200, 200, 200);
+  doc.line(margin.left, yPos, pageWidth - margin.right, yPos);
+  yPos += 8;
+
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'bold');
+  doc.text('For questions about these Terms of Service, please contact us:', margin.left, yPos);
+  yPos += 7;
+
+  doc.setFont('helvetica', 'normal');
+  doc.text('Email: mathew@mrecai.com  |  Phone: 929-702-2818', margin.left, yPos);
+  yPos += 10;
+
+  doc.setFontSize(9);
+  doc.setTextColor(128, 128, 128);
+  doc.text(
+    `© ${new Date().getFullYear()} MRE Consulting & Insurance. All rights reserved.`,
+    pageWidth / 2,
+    yPos,
+    { align: 'center' }
+  );
+
+  // Add page numbers to all pages
+  const totalPages = doc.getNumberOfPages();
+  for (let i = 1; i <= totalPages; i++) {
+    doc.setPage(i);
+    doc.setFontSize(8);
+    doc.setTextColor(128, 128, 128);
+    doc.text(
+      `Page ${i} of ${totalPages}`,
+      pageWidth - margin.right,
+      pageHeight - 10,
+      { align: 'right' }
+    );
+  }
+
+  // Save the PDF
+  doc.save('MRE_Terms_of_Service.pdf');
 };

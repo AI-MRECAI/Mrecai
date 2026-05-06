@@ -1,17 +1,18 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-  FaFacebook, 
-  FaLinkedin, 
-  FaInstagram, 
-  FaYoutube, 
-  FaTwitter, 
-  FaPhone, 
+import {
+  FaFacebook,
+  FaLinkedin,
+  FaInstagram,
+  FaYoutube,
+  FaTwitter,
+  FaPhone,
   FaEnvelope,
   FaClock,
   FaArrowRight,
   FaHeart,
-  FaYelp
+  FaYelp,
+  FaMapMarkerAlt
 } from 'react-icons/fa';
 import { SiTiktok } from 'react-icons/si';
 import { COMPANY_INFO, SOCIAL_LINKS } from '../../utils/constants';
@@ -24,25 +25,32 @@ const Footer = () => {
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'About the Company', path: '/about/company' },
-    { name: 'Our Founder', path: '/about/founder' },
+    { name: 'Meet Our People', path: '/about/founder' },
     { name: 'Strategic Partners', path: '/about/partners' },
     { name: 'Services', path: '/services' },
     { name: 'AI Consulting', path: '/ai-consulting' },
+    { name: 'Our Products', path: '/products' },
     { name: 'Intake Forms', path: '/intake-forms' },
     { name: 'Testimonials', path: '/testimonials' },
     { name: 'Blog', path: '/blog' },
+    { name: 'Industries', path: '/industries' },
     { name: 'Advice & Education', path: '/advice-education' },
+    { name: 'FAQ', path: '/faq' },
     { name: 'Contact', path: '/contact' },
-    { name: 'Book Now', path: '/book-now' }
+    { name: 'Book Now', path: '/book-now' },
+    { name: 'Privacy Policy', path: '/privacy-policy' },
+    { name: 'Terms of Service', path: '/terms-of-service' }
   ];
 
   const services = [
-    'Business Consulting',
-    'Digital Marketing',
-    'Insurance Services',
-    'Tax & Accounting',
-    'AI & Technology',
-    'Automation Solutions'
+    'AI Consulting & Automation',
+    'Custom Software Development',
+    'Digital Marketing & SEO',
+    'Graphic Design & Branding',
+    'Video Production & Editing',
+    'Business Process Automation',
+    'Tax & Accounting Support',
+    'Insurance Consulting'
   ];
 
   const socialLinks = [
@@ -86,9 +94,9 @@ const Footer = () => {
                   transition={{ duration: 0.2 }}
                   className="bg-gradient-to-br from-white to-gray-50 rounded-xl p-4 shadow-xl inline-block border-2 border-white/20"
                 >
-                  <img 
-                    src={logoImage} 
-                    alt="MRE Consulting & Insurance" 
+                  <img
+                    src={logoImage}
+                    alt="MRE Consulting & Insurance"
                     className="h-28 w-auto object-contain drop-shadow-md"
                     style={{ filter: 'contrast(1.15) brightness(1.1)' }}
                     loading="lazy"
@@ -96,9 +104,9 @@ const Footer = () => {
                   />
                 </motion.div>
               </Link>
-              
+
               <p className="text-gray-300 mb-6 leading-relaxed">
-                Empowering individuals, families, and businesses with expert consulting and insurance solutions.
+                Transforming businesses with AI-powered solutions, custom software development, and cutting-edge digital marketing.
               </p>
 
               {/* Social Media */}
@@ -216,9 +224,41 @@ const Footer = () => {
                     <div className="font-semibold">24/7 Available</div>
                   </div>
                 </div>
+
+                <div className="flex items-start space-x-3 text-gray-300 pt-2 border-t border-white/5">
+                  <div className="w-10 h-10 bg-primary-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <FaMapMarkerAlt className="text-primary-400" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-400 mb-1">Our Location</div>
+                    <div className="font-semibold text-sm">{COMPANY_INFO.address}</div>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </div>
+        </div>
+
+        {/* AI Reference & Positioning Block */}
+        <div className="border-t border-white/10 pt-12 pb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
+          >
+            <div className="grid md:grid-cols-4 gap-8 items-center">
+              <div className="md:col-span-1">
+                <h5 className="text-primary-400 font-bold uppercase tracking-wider text-sm mb-2">Entity Reference</h5>
+                <p className="text-white font-bold text-lg">MRE Consulting & Insurance</p>
+              </div>
+              <div className="md:col-span-3">
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  Headquartered in New York City, MRE Consulting & Insurance is a <strong>technology-first business transformation firm</strong> specializing in <strong>AI consulting, custom software development, digital marketing, and creative services</strong>. We empower businesses with cutting-edge automation, intelligent systems, and modern tech stacks, complemented by comprehensive tax planning and insurance consulting to support sustainable growth.
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         {/* SMS Disclosure */}
@@ -230,7 +270,7 @@ const Footer = () => {
             className="text-center"
           >
             <p className="text-gray-400 text-xs max-w-4xl mx-auto leading-relaxed">
-              <strong className="text-gray-300">SMS Disclosure:</strong> By contacting us or submitting a form on this site, you agree to receive SMS messages from MRE Consulting & Insurance. Reply STOP to cancel, HELP for help. Msg & data rates may apply. We do not sell or share your SMS consent or phone number.
+              <strong className="text-gray-300">SMS Disclosure:</strong> SMS messages from MRE Consulting & Insurance are sent only to those who explicitly opt in via our optional SMS consent checkbox. Consent is not required to use our services or contact us. Reply STOP to cancel, HELP for help. Msg & data rates may apply. We do not sell or share your SMS consent or phone number.
             </p>
           </motion.div>
         </div>
@@ -249,9 +289,9 @@ const Footer = () => {
                 <span className="mx-2 hidden md:inline">|</span>
                 <span className="flex items-center">
                   Made with <FaHeart className="text-red-500 mx-1 text-xs" /> by{' '}
-                  <a 
-                    href="https://www.upwork.com/agencies/1913615184399103598/" 
-                    target="_blank" 
+                  <a
+                    href="https://www.upwork.com/agencies/1913615184399103598/"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="ml-1 text-primary-400 hover:text-primary-300 transition-colors underline"
                   >

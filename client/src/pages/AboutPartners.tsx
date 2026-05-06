@@ -99,7 +99,7 @@ const AboutPartners = () => {
 
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {[
-                { icon: FaHandshake, number: '50+', label: 'Strategic Partners' },
+                { icon: FaHandshake, number: '6+', label: 'Strategic Partners' },
                 { icon: FaAward, number: '100%', label: 'Vetted & Trusted' },
                 { icon: FaGlobe, number: 'National', label: 'Coverage Network' }
               ].map((stat, index) => (
@@ -160,12 +160,12 @@ const AboutPartners = () => {
                   {/* Introduction */}
                   <div className="mb-10">
                     <p className="text-gray-700 leading-relaxed text-lg mb-4">
-                      MercAI is excited to partner with <strong>NovaEdge Solutions</strong> — a top-rated global 
+                      MRECAI is excited to partner with <strong>NovaEdge Solutions</strong> — a top-rated global 
                       software agency known for building secure, scalable, and high-performance digital solutions 
                       for over 15 years.
                     </p>
                     <p className="text-gray-700 leading-relaxed">
-                      This collaboration combines MercAI's cutting-edge artificial intelligence and automation 
+                      This collaboration combines MRECAI's cutting-edge artificial intelligence and automation 
                       capabilities with NovaEdge's full-stack engineering and cloud expertise, enabling both 
                       organizations to deliver AI-driven software products and enterprise-grade solutions that 
                       push the boundaries of innovation.
@@ -1017,7 +1017,7 @@ const AboutPartners = () => {
                 Insurance <span className="gradient-text">Partner</span>
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Strategic partnership with a trusted New York-based independent agency
+                Strategic partnership with a trusted independent insurance agency
               </p>
             </motion.div>
 

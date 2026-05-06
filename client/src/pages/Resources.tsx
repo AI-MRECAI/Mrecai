@@ -1,6 +1,6 @@
 import SEO from '../components/common/SEO';
 import { motion } from 'framer-motion';
-import { FaDownload, FaFileAlt, FaCalculator, FaCheckCircle, FaRocket, FaIndustry, FaBullhorn, FaSpinner } from 'react-icons/fa';
+import { FaDownload, FaFileAlt, FaCalculator, FaCheckCircle, FaRocket, FaIndustry, FaBullhorn, FaSpinner, FaArrowRight, FaChartBar, FaShieldAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { supabase, WhitePaper } from '../lib/supabase';
@@ -82,14 +82,14 @@ const Resources = () => {
       if (!response.ok) {
         throw new Error(`Download failed with status: ${response.status}. Please check if the file exists in Supabase Storage.`);
       }
-      
+
       const blob = await response.blob();
-      
+
       // Verify it's a PDF
       if (blob.type !== 'application/pdf' && !blob.type.includes('pdf')) {
         console.warn('Downloaded file may not be a PDF. Type:', blob.type);
       }
-      
+
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
@@ -98,7 +98,7 @@ const Resources = () => {
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
-      
+
       console.log('PDF downloaded successfully:', filename);
     } catch (error: any) {
       console.error('Download failed:', error);
@@ -154,6 +154,22 @@ const Resources = () => {
       icon: FaCheckCircle,
       link: '/tools/readiness-assessment',
       color: 'from-orange-500 to-red-600'
+    },
+    {
+      id: 'tax-savings-checklist',
+      title: '2026 Tax Savings Checklist',
+      description: 'Find out if your business is overpaying in taxes. Use our interactive audit to find missed deductions and credits.',
+      icon: FaChartBar,
+      link: '/resources/tax-savings-checklist',
+      color: 'from-green-500 to-emerald-600'
+    },
+    {
+      id: 'insurance-gap-checklist',
+      title: 'Commercial Insurance Gap Audit',
+      description: 'Identify hidden risks in your coverage. Our interactive tool helps you find where you are exposed to loss.',
+      icon: FaShieldAlt,
+      link: '/resources/insurance-gap-checklist',
+      color: 'from-red-500 to-orange-600'
     }
   ];
 
@@ -232,6 +248,53 @@ const Resources = () => {
         {/* White Papers Section */}
         <section className="section-padding bg-white">
           <div className="container-custom">
+            {/* Featured Pillar Page */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-20"
+            >
+              <Link
+                to="/resources/executives-guide-to-ai"
+                className="group relative overflow-hidden bg-gradient-to-r from-navy-900 via-navy-800 to-navy-900 rounded-2xl border border-primary-500/30 p-8 md:p-12 block hover:shadow-2xl hover:shadow-primary-500/10 transition-all"
+              >
+                <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:rotate-12 transition-transform">
+                  <FaRocket className="text-8xl text-primary-500" />
+                </div>
+
+                <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center">
+                  <div>
+                    <span className="inline-block px-4 py-1 bg-primary-500/20 text-primary-400 rounded-full text-sm font-bold mb-4 uppercase tracking-widest">
+                      Featured Pillar Page
+                    </span>
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 italic italic font-bold">
+                      The Executive’s Guide to AI: <br />
+                      <span className="text-primary-400">Automate Without Increasing Risk</span>
+                    </h2>
+                    <p className="text-gray-300 text-lg mb-6 leading-relaxed italic italic font-medium">
+                      Confused by the AI hype? Learn how to implement practical automation in your business to save time and money while keeping your data secure.
+                    </p>
+                    <div className="inline-flex items-center text-primary-400 font-bold text-lg group-hover:translate-x-2 transition-transform italic italic italic font-bold">
+                      Read the Full Guide <FaArrowRight className="ml-2" />
+                    </div>
+                  </div>
+                  <div className="hidden md:flex justify-end">
+                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-xl max-w-sm italic italic font-medium">
+                      <h4 className="text-white font-bold mb-3 italic font-bold">What's Inside:</h4>
+                      <ul className="space-y-2 text-gray-400 text-sm italic italic">
+                        <li className="flex items-center italic italic"><FaCheckCircle className="text-primary-500 mr-2 flex-shrink-0" /> The M.R.E. Implementation Framework</li>
+                        <li className="flex items-center italic italic"><FaCheckCircle className="text-primary-500 mr-2 flex-shrink-0" /> AI Risk & Insurance Gap Analysis</li>
+                        <li className="flex items-center italic italic"><FaCheckCircle className="text-primary-500 mr-2 flex-shrink-0" /> 3 Immediate Automation Wins for 2026</li>
+                        <li className="flex items-center italic italic"><FaCheckCircle className="text-primary-500 mr-2 flex-shrink-0" /> Operational ROI Benchmarks</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -239,10 +302,10 @@ const Resources = () => {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 italic italic font-bold">
                 Flagship <span className="gradient-text">White Papers</span>
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto italic italic font-medium">
                 Comprehensive research and insights backed by data from McKinsey, PwC, Gartner, Deloitte, and IBM
               </p>
             </motion.div>
@@ -255,63 +318,63 @@ const Resources = () => {
             ) : (
               <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
                 {whitepapers.map((paper, index) => (
-                <motion.div
-                  key={paper.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100"
-                >
-                  {/* Header with Icon */}
-                  <div className={`bg-gradient-to-r ${paper.color} p-8 text-white`}>
-                    <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mb-4 backdrop-blur-sm">
-                      <paper.icon className="text-3xl text-white" />
-                    </div>
-                    <div className="text-sm font-semibold mb-2 opacity-90">{paper.pages} Pages</div>
-                    <h3 className="text-2xl font-bold leading-tight">{paper.title}</h3>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-8">
-                    <p className="text-gray-700 mb-6 leading-relaxed">{paper.description}</p>
-
-                    {/* Topics */}
-                    <div className="mb-6">
-                      <h4 className="font-bold text-navy-900 mb-3 text-sm uppercase tracking-wide">Key Topics</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {(paper.topics || []).map((topic: string, i: number) => (
-                          <span
-                            key={i}
-                            className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
-                          >
-                            {topic}
-                          </span>
-                        ))}
+                  <motion.div
+                    key={paper.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1, duration: 0.5 }}
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100"
+                  >
+                    {/* Header with Icon */}
+                    <div className={`bg-gradient-to-r ${paper.color} p-8 text-white`}>
+                      <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mb-4 backdrop-blur-sm">
+                        <paper.icon className="text-3xl text-white" />
                       </div>
+                      <div className="text-sm font-semibold mb-2 opacity-90">{paper.pages} Pages</div>
+                      <h3 className="text-2xl font-bold leading-tight">{paper.title}</h3>
                     </div>
 
-                    {/* Download Button */}
-                    <button
-                      onClick={() => handleDownload(paper.id, paper.pdf_url, paper.pdf_filename || `${paper.slug}.pdf`)}
-                      disabled={downloading === paper.id}
-                      className={`w-full inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r ${paper.color} text-white font-semibold rounded-lg hover:shadow-lg transition-all group-hover:scale-105 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed`}
-                    >
-                      {downloading === paper.id ? (
-                        <>
-                          <FaSpinner className="mr-2 animate-spin" />
-                          Downloading...
-                        </>
-                      ) : (
-                        <>
-                          <FaDownload className="mr-2" />
-                          Download PDF
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </motion.div>
+                    {/* Content */}
+                    <div className="p-8">
+                      <p className="text-gray-700 mb-6 leading-relaxed">{paper.description}</p>
+
+                      {/* Topics */}
+                      <div className="mb-6">
+                        <h4 className="font-bold text-navy-900 mb-3 text-sm uppercase tracking-wide">Key Topics</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {(paper.topics || []).map((topic: string, i: number) => (
+                            <span
+                              key={i}
+                              className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
+                            >
+                              {topic}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Download Button */}
+                      <button
+                        onClick={() => handleDownload(paper.id, paper.pdf_url, paper.pdf_filename || `${paper.slug}.pdf`)}
+                        disabled={downloading === paper.id}
+                        className={`w-full inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r ${paper.color} text-white font-semibold rounded-lg hover:shadow-lg transition-all group-hover:scale-105 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed`}
+                      >
+                        {downloading === paper.id ? (
+                          <>
+                            <FaSpinner className="mr-2 animate-spin" />
+                            Downloading...
+                          </>
+                        ) : (
+                          <>
+                            <FaDownload className="mr-2" />
+                            Download PDF
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
             )}

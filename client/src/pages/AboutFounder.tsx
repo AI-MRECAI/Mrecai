@@ -1,18 +1,21 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaHome, FaChevronRight, FaLinkedin, FaEnvelope, FaPhone, FaGraduationCap, FaAward, FaBriefcase, FaLightbulb, FaQuoteLeft } from 'react-icons/fa';
+import { FaHome, FaChevronRight, FaLinkedin, FaEnvelope, FaPhone, FaGraduationCap, FaAward, FaBriefcase, FaLightbulb, FaQuoteLeft, FaCheckCircle } from 'react-icons/fa';
+import { SiUpwork } from 'react-icons/si';
 import SEO from '../components/common/SEO';
 import { personSchema, breadcrumbSchema } from '../utils/schemas';
 import founderImage from '../../images/Matthew-Founder-1.png';
+import ctoImage from '../../images/WajidCto.png';
+import cmoImage from '../../images/JessieGwilt.jpeg';
 
 const AboutFounder = () => {
   return (
     <>
       <SEO
-        title="Meet Matthew Epstein | MRECAI Founder & President"
-        description="Meet Matthew Epstein, founder of MRECAI. With extensive experience in business consulting and insurance, he leads our team with expertise and vision."
+        title="Meet Our People | MRECAI Leadership Team"
+        description="Meet the MRECAI leadership team: Matthew R. Epstein (President & Founder), Jessie Gwilt (CMO), and Wajid Ali Shah (CTO). Expert leadership in business consulting, marketing, and technology."
         canonical="/about/founder"
-        keywords="Matthew Epstein, MRECAI founder, business consultant, insurance expert, company president"
+        keywords="MRECAI team, Matthew R. Epstein, Jessie Gwilt, Wajid Ali Shah, business consultant, CMO, CTO, leadership team"
         schema={{
           '@context': 'https://schema.org',
           '@graph': [
@@ -20,7 +23,7 @@ const AboutFounder = () => {
             breadcrumbSchema([
               { name: 'Home', url: '/' },
               { name: 'About', url: '/about' },
-              { name: 'Founder', url: '/about/founder' },
+              { name: 'Our People', url: '/about/founder' },
             ]),
           ],
         }}
@@ -40,7 +43,7 @@ const AboutFounder = () => {
                 About
               </Link>
               <FaChevronRight className="mx-2 text-gray-400" />
-              <span className="text-navy-900 font-semibold">About the Founder</span>
+              <span className="text-navy-900 font-semibold">Meet Our People</span>
             </div>
           </div>
         </div>
@@ -58,7 +61,7 @@ const AboutFounder = () => {
               transition={{ duration: 0.6 }}
             >
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                Meet <span className="bg-gradient-to-r from-primary-400 via-primary-300 to-primary-500 bg-clip-text text-transparent">Our Founder</span>
+                Meet <span className="bg-gradient-to-r from-primary-400 via-primary-300 to-primary-500 bg-clip-text text-transparent">Our People</span>
               </h1>
               <p className="text-xl text-gray-200 max-w-3xl mx-auto">
                 Leadership, vision, and commitment to excellence
@@ -67,8 +70,111 @@ const AboutFounder = () => {
           </div>
         </section>
 
-        {/* Founder Profile */}
+        {/* CTO Section */}
         <section className="section-padding bg-white">
+          <div className="container-custom">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid md:grid-cols-5 gap-12 items-start">
+                {/* Photo Column */}
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="md:col-span-2"
+                >
+                  <div className="relative">
+                    {/* CTO photo */}
+                    <div className="aspect-[3/4] bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl shadow-2xl overflow-hidden">
+                      <img 
+                        src={ctoImage} 
+                        alt="Wajid Ali Shah - Chief Technology Officer"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    {/* Decorative elements */}
+                    <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-purple-500/20 rounded-full blur-2xl"></div>
+                    <div className="absolute -top-4 -left-4 w-24 h-24 bg-purple-400/20 rounded-full blur-xl"></div>
+                  </div>
+
+                  {/* Contact Card */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                    className="mt-8 bg-gradient-to-br from-purple-900 to-purple-800 rounded-xl p-6 text-white shadow-xl"
+                  >
+                    <h3 className="text-xl font-bold mb-4">NovaEdge Solutions</h3>
+                    <div className="space-y-3">
+                      <a href="https://www.upwork.com/agencies/1913615184399103598/" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 hover:text-purple-300 transition-colors">
+                        <SiUpwork className="text-purple-400" />
+                        <span>Visit NovaEdge Solutions</span>
+                      </a>
+                    </div>
+                  </motion.div>
+                </motion.div>
+
+                {/* Bio Column */}
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="md:col-span-3"
+                >
+                  <div className="mb-6">
+                    <h2 className="text-4xl md:text-5xl font-bold text-navy-900 mb-2">Wajid Ali Shah</h2>
+                    <p className="text-2xl text-purple-600 font-semibold mb-4">Chief Technology Officer</p>
+                    <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full"></div>
+                  </div>
+
+                  <div className="prose prose-lg max-w-none">
+                    <div className="bg-purple-50 border-l-4 border-purple-500 p-6 rounded-r-lg mb-8">
+                      <FaQuoteLeft className="text-purple-500 text-3xl mb-4" />
+                      <p className="text-lg text-gray-700 italic leading-relaxed">
+                        "Technology should empower businesses, not complicate them. We build intelligent systems that work seamlessly behind the scenes."
+                      </p>
+                    </div>
+
+                    <h3 className="text-2xl font-bold text-navy-900 mb-4">About Wajid Ali Shah</h3>
+                    <p className="text-gray-700 leading-relaxed mb-6">
+                      With 15 years of software engineering experience, <strong>Wajid Ali Shah</strong> serves as the Chief Technology Officer of MRECAI and CEO of NovaEdge Solutions. His expertise spans AI development, website development, desktop application development, mobile app development, and automation solutions—delivering enterprise-grade technology that empowers businesses to scale efficiently.
+                    </p>
+                    <p className="text-gray-700 leading-relaxed mb-6">
+                      Throughout his career, Wajid has architected comprehensive technology solutions across diverse industries, from startups to established enterprises. He specializes in transforming complex business challenges into elegant, automated systems that drive measurable results and operational excellence.
+                    </p>
+                    <p className="text-gray-700 leading-relaxed mb-6">
+                      As CTO of A.T.L.A.S Engine (Advanced Targeting & Automation System), Wajid continues to push the boundaries of what's possible with intelligent automation, helping businesses leverage cutting-edge technology to achieve their strategic goals.
+                    </p>
+
+                    <div className="space-y-4 mb-8">
+                      {[
+                        'CTO of MRECAI',
+                        'CEO of NovaEdge Solutions',
+                        '15 years of software engineering experience',
+                        'Expert in AI, web, desktop, and mobile app development',
+                        'Specializes in automation and digital transformation',
+                        'CTO of A.T.L.A.S Engine (Advanced Targeting & Automation System)',
+                        'Architect of enterprise-grade technology solutions'
+                      ].map((item, index) => (
+                        <div key={index} className="flex items-center space-x-3">
+                          <FaCheckCircle className="text-purple-500 flex-shrink-0" />
+                          <span className="text-gray-700 font-medium">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Founder Profile */}
+        <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
           <div className="container-custom">
             <div className="max-w-6xl mx-auto">
               <div className="grid md:grid-cols-5 gap-12 items-start">
@@ -85,7 +191,7 @@ const AboutFounder = () => {
                     <div className="aspect-[3/4] bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl shadow-2xl overflow-hidden">
                       <img 
                         src={founderImage} 
-                        alt="Matthew Epstein - Founder & President of MRE Consulting & Insurance"
+                        alt="Matthew R. Epstein - Founder & President of MRE Consulting & Insurance"
                         className="w-full h-full object-cover"
                         style={{ objectPosition: '50% 15%' }}
                         loading="lazy"
@@ -111,9 +217,9 @@ const AboutFounder = () => {
                         <FaEnvelope className="text-primary-400" />
                         <span>Matthew@mrecai.com</span>
                       </a>
-                      <a href="tel:929-919-3574" className="flex items-center space-x-3 hover:text-primary-400 transition-colors">
+                      <a href="tel:929-702-2818" className="flex items-center space-x-3 hover:text-primary-400 transition-colors">
                         <FaPhone className="text-primary-400" />
-                        <span>929-919-3574</span>
+                        <span>929-702-2818</span>
                       </a>
                       <a href="https://www.linkedin.com/company/mre-consulting-insurance/" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 hover:text-primary-400 transition-colors">
                         <FaLinkedin className="text-primary-400" />
@@ -132,7 +238,7 @@ const AboutFounder = () => {
                   className="md:col-span-3"
                 >
                   <div className="mb-6">
-                    <h2 className="text-4xl md:text-5xl font-bold text-navy-900 mb-2">Matthew Epstein</h2>
+                    <h2 className="text-4xl md:text-5xl font-bold text-navy-900 mb-2">Matthew R. Epstein</h2>
                     <p className="text-2xl text-primary-600 font-semibold mb-4">President & Founder</p>
                     <div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full"></div>
                   </div>
@@ -146,10 +252,8 @@ const AboutFounder = () => {
                         the personal touch that makes all the difference."
                       </p>
                     </div>
-
-                    <h3 className="text-2xl font-bold text-navy-900 mb-4">About Matthew Epstein</h3>
                     <p className="text-gray-700 leading-relaxed mb-6">
-                      <strong>Matthew Epstein</strong> is an accomplished entrepreneur, consultant, and licensed insurance broker who blends financial expertise with innovative technology solutions. A graduate of the <strong>University at Buffalo</strong>, Matthew earned both his <strong>Bachelor's and Master's degrees in Accounting and Finance</strong>, graduating <strong>Summa Cum Laude</strong> and <strong>Magna Cum Laude</strong>.
+                      <strong>Matthew R. Epstein</strong> is an accomplished entrepreneur, consultant, and licensed insurance broker who blends financial expertise with innovative technology solutions. A graduate of the <strong>University at Buffalo</strong>, Matthew earned both his <strong>Bachelor's and Master's degrees in Accounting and Finance</strong>, graduating <strong>Summa Cum Laude</strong> and <strong>Magna Cum Laude</strong>.
                     </p>
 
                     <p className="text-gray-700 leading-relaxed mb-6">
@@ -157,7 +261,7 @@ const AboutFounder = () => {
                     </p>
 
                     <p className="text-gray-700 leading-relaxed mb-6">
-                      Now, as a <strong>New York–licensed Property & Casualty and Life, Accident & Health Insurance Broker</strong>, Matthew leads MRE Consulting & Insurance full-time — helping individuals and businesses achieve smarter financial decisions, stronger protection, and lasting success through comprehensive, personalized consulting and insurance solutions.
+                      Now, as a <strong>licensed Property & Casualty and Life, Accident & Health Insurance Broker</strong>, Matthew leads MRE Consulting & Insurance full-time — helping individuals and businesses achieve smarter financial decisions, stronger protection, and lasting success through comprehensive, personalized consulting and insurance solutions.
                     </p>
 
                     <h3 className="text-2xl font-bold text-navy-900 mb-4 mt-8">My Journey — From Numbers to Innovation</h3>
@@ -279,6 +383,89 @@ const AboutFounder = () => {
                   </div>
                 </motion.div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CMO Section */}
+        <section className="section-padding bg-gradient-to-b from-white to-gray-50">
+          <div className="container-custom">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid md:grid-cols-5 gap-12 items-start">
+                {/* Photo Column */}
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="md:col-span-2"
+                >
+                  <div className="relative">
+                    {/* CMO photo */}
+                    <div className="aspect-[3/4] bg-gradient-to-br from-pink-100 to-pink-200 rounded-2xl shadow-2xl overflow-hidden">
+                      <img 
+                        src={cmoImage} 
+                        alt="Jessie Gwilt - Chief Marketing Officer"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    {/* Decorative elements */}
+                    <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-pink-500/20 rounded-full blur-2xl"></div>
+                    <div className="absolute -top-4 -left-4 w-24 h-24 bg-pink-400/20 rounded-full blur-xl"></div>
+                  </div>
+                </motion.div>
+
+                {/* Bio Column */}
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="md:col-span-3"
+                >
+                  <div className="mb-6">
+                    <h2 className="text-4xl md:text-5xl font-bold text-navy-900 mb-2">Jessie Gwilt</h2>
+                    <p className="text-2xl text-pink-600 font-semibold mb-4">Chief Marketing Officer</p>
+                    <div className="w-24 h-1 bg-gradient-to-r from-pink-500 to-pink-600 rounded-full"></div>
+                  </div>
+
+                  <div className="prose prose-lg max-w-none">
+                    <div className="bg-pink-50 border-l-4 border-pink-500 p-6 rounded-r-lg mb-8">
+                      <FaQuoteLeft className="text-pink-500 text-3xl mb-4" />
+                      <p className="text-lg text-gray-700 italic leading-relaxed">
+                        "Building brands that meaningfully enhance lives—combining big-picture strategy with authentic human connection."
+                      </p>
+                    </div>
+
+                    <h3 className="text-2xl font-bold text-navy-900 mb-4">About Jessie Gwilt</h3>
+                    <p className="text-gray-700 leading-relaxed mb-6">
+                      A Los Angeles native who has proudly called New York City home for nearly a decade, <strong>Jessie Gwilt</strong> holds degrees in Advertising and Political Science from Syracuse University. She has built a dynamic career in Advertising & Marketing spanning more than ten years, leading high-impact initiatives across CPG, pharma-adjacent brands, B2B organizations, and nonprofits—delivering thoughtful strategy, strong execution, and measurable results.
+                    </p>
+                    <p className="text-gray-700 leading-relaxed mb-6">
+                      Throughout her career, Jessie has successfully managed a wide range of initiatives, from supporting established brands with complex stakeholder needs to helping emerging businesses define their voice and scale with intention. She is known for her versatility, steady leadership, and ability to move projects forward with clarity and purpose.
+                    </p>
+                    <p className="text-gray-700 leading-relaxed mb-6">
+                      Outside of work, Jessie is a self-proclaimed "crazy dog mom" to her energetic six-year-old Havanese–Cavalier King Charles mix, who keeps life full of motion, personality, and joy.
+                    </p>
+
+                    <div className="space-y-4 mb-8">
+                      {[
+                        'Degrees in Advertising and Political Science from Syracuse University',
+                        '10+ years leading high-impact initiatives across CPG, pharma-adjacent, B2B, and nonprofits',
+                        'Known for versatility, steady leadership, and clarity in execution',
+                        'Passionate about helping brands define their voice and scale with intention'
+                      ].map((item, index) => (
+                        <div key={index} className="flex items-center space-x-3">
+                          <FaCheckCircle className="text-pink-500 flex-shrink-0" />
+                          <span className="text-gray-700 font-medium">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </div>
         </section>
@@ -405,3 +592,4 @@ const AboutFounder = () => {
 };
 
 export default AboutFounder;
+

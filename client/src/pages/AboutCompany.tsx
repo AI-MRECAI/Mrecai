@@ -97,19 +97,22 @@ const AboutCompany = () => {
                   transition={{ duration: 0.6 }}
                 >
                   <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                    MRE Consulting & Insurance is a forward-thinking firm dedicated to empowering individuals, 
-                    families, and businesses with comprehensive consulting and insurance solutions. Founded in 2024, 
-                    we bring together expertise in business consulting, digital marketing, insurance services, 
+                    MRE Consulting & Insurance is a forward-thinking firm dedicated to empowering individuals,
+                    families, and businesses with comprehensive consulting and insurance solutions. Founded in 2024,
+                    we bring together expertise in business consulting, digital marketing, insurance services,
                     tax and accounting, and cutting-edge AI technology.
                   </p>
                   <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                    Our approach combines traditional consulting excellence with innovative technology solutions, 
-                    ensuring our clients stay ahead in an ever-evolving business landscape. We believe in building 
+                    Our approach combines traditional consulting excellence with innovative technology solutions,
+                    ensuring our clients stay ahead in an ever-evolving business landscape. We leverage cutting-edge
+                    technologies including <strong>Python</strong> for automation, <strong>TensorFlow</strong> for AI
+                    implementation, and <strong>QuickBooks API</strong> for seamless accounting integrations. We believe in building
                     lasting partnerships based on trust, transparency, and measurable results.
                   </p>
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    With a commitment to 24/7 service support and personalized attention, we're not just service 
-                    providers—we're your strategic partners in success.
+                    With a commitment to 24/7 service support and personalized attention, we're not just service
+                    providers—we're your strategic partners in success, utilizing modern tools and platforms to
+                    deliver exceptional outcomes.
                   </p>
                 </motion.div>
 
@@ -121,7 +124,7 @@ const AboutCompany = () => {
                   className="space-y-4"
                 >
                   {[
-                    { icon: FaUsers, text: '500+ satisfied clients across multiple industries' },
+                    { icon: FaUsers, text: '180+ satisfied clients across multiple industries' },
                     { icon: FaAward, text: 'Expert team with extensive industry experience' },
                     { icon: FaCheckCircle, text: '98% client success rate' },
                     { icon: FaRocket, text: 'Cutting-edge AI and automation solutions' }
@@ -172,9 +175,9 @@ const AboutCompany = () => {
                 <FaBullseye className="text-6xl mb-6 mx-auto opacity-80" />
                 <h3 className="text-3xl font-bold mb-6 text-center">Our Mission Statement</h3>
                 <p className="text-xl leading-relaxed text-center opacity-95">
-                  To empower our clients with innovative, personalized solutions that drive growth, efficiency, 
-                  and security. We are committed to delivering exceptional service, leveraging cutting-edge 
-                  technology, and building lasting partnerships that create measurable value for individuals, 
+                  To empower our clients with innovative, personalized solutions that drive growth, efficiency,
+                  and security. We are committed to delivering exceptional service, leveraging cutting-edge
+                  technology, and building lasting partnerships that create measurable value for individuals,
                   families, and businesses.
                 </p>
               </motion.div>
@@ -439,7 +442,7 @@ const AboutCompany = () => {
                   year: '2025',
                   quarter: '',
                   title: 'Continued Growth',
-                  description: 'Serving 500+ clients with 98% success rate, expanding services across consulting, insurance, technology, and financial solutions.',
+                  description: 'Serving 180+ clients with 98% success rate, expanding services across consulting, insurance, technology, and financial solutions.',
                   color: 'from-orange-500 to-red-500'
                 }
               ].map((milestone, index) => (

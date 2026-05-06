@@ -1,10 +1,10 @@
-import { 
-  FaBriefcase, 
-  FaMobileAlt, 
-  FaShieldAlt, 
-  FaChartBar, 
-  FaRobot, 
-  FaCogs, 
+import {
+  FaBriefcase,
+  FaMobileAlt,
+  FaShieldAlt,
+  FaChartBar,
+  FaRobot,
+  FaCogs,
   FaGlobe,
   FaBullseye,
   FaBolt,
@@ -14,14 +14,21 @@ import {
   FaLock,
   FaCalculator,
   FaFileInvoiceDollar,
-  FaLandmark
+  FaLandmark,
+  FaLaptopCode,
+  FaHardHat,
+  FaStethoscope,
+  FaHome,
+  FaUserFriends,
+  FaShoppingCart,
+  FaGavel
 } from 'react-icons/fa';
 
 export const COMPANY_INFO = {
   name: 'MRE Consulting & Insurance',
-  phone: '929-919-3574',
+  phone: '929-702-2818',
   email: 'Matthew@MRECAI.com',
-  address: '', // Add if available
+  address: '205 East 95th Street, New York, NY 10128',
   calendlyUrl: import.meta.env.VITE_CALENDLY_URL || 'https://calendly.com/mrecai-consulting',
 };
 
@@ -37,127 +44,139 @@ export const SOCIAL_LINKS = {
 
 export const SERVICES = [
   {
-    id: 'business-consulting',
-    title: 'Business Consulting',
-    description: 'Strategic guidance to help your business grow and thrive in competitive markets.',
-    icon: FaBriefcase,
+    id: 'ai-consulting',
+    title: 'AI Consulting & Automation',
+    description: 'Deploy intelligent AI agents, chatbots, and automation systems that work 24/7 to scale your business.',
+    icon: FaRobot,
     features: [
-      'Strategic planning and execution',
-      'Financial analysis and forecasting',
-      'Operational efficiency optimization',
-      'Growth strategy development'
+      'AI chatbots & virtual agents',
+      'Process automation & workflows',
+      'Machine learning solutions',
+      'AI strategy & implementation'
+    ]
+  },
+  {
+    id: 'software-development',
+    title: 'Custom Software Development',
+    description: 'Build powerful web applications, mobile apps, and enterprise software tailored to your needs.',
+    icon: FaLaptopCode,
+    features: [
+      'Custom web applications',
+      'Mobile app development',
+      'API development & integration',
+      'Cloud infrastructure & DevOps'
     ]
   },
   {
     id: 'digital-marketing',
     title: 'Digital Marketing',
-    description: 'Comprehensive digital marketing solutions to boost your online presence and reach.',
+    description: 'Data-driven marketing strategies including SEO, PPC, social media, and content marketing.',
     icon: FaMobileAlt,
     features: [
-      'SEO and content marketing',
+      'SEO & content marketing',
       'Social media management',
       'PPC advertising campaigns',
-      'Analytics and reporting'
+      'Marketing automation'
     ]
   },
   {
-    id: 'insurance-services',
-    title: 'Insurance Services',
-    description: 'Expert insurance consulting to protect what matters most to you and your business.',
-    icon: FaShieldAlt,
+    id: 'graphic-design',
+    title: 'Graphic Design & Branding',
+    description: 'Professional graphic design, brand identity, and visual content that makes your business stand out.',
+    icon: FaGlobe,
     features: [
-      'Comprehensive coverage analysis',
-      'Multiple carrier options',
-      'Claims support and advocacy',
-      'Policy review and optimization'
+      'Logo & brand identity design',
+      'Marketing materials & collateral',
+      'Social media graphics',
+      'UI/UX design'
+    ]
+  },
+  {
+    id: 'video-editing',
+    title: 'Video Production & Editing',
+    description: 'Professional video editing, motion graphics, and video content creation for marketing and social media.',
+    icon: FaCogs,
+    features: [
+      'Video editing & post-production',
+      'Motion graphics & animation',
+      'Social media video content',
+      'Promotional videos'
+    ]
+  },
+  {
+    id: 'business-automation',
+    title: 'Business Process Automation',
+    description: 'Streamline operations with intelligent workflow automation and system integrations.',
+    icon: FaBolt,
+    features: [
+      'Workflow automation design',
+      'CRM & ERP integration',
+      'Custom automation solutions',
+      'System optimization'
     ]
   },
   {
     id: 'tax-accounting',
-    title: 'Tax & Accounting',
-    description: 'Professional tax planning and comprehensive accounting services for individuals and businesses.',
+    title: 'Tax & Accounting Support',
+    description: 'Professional tax planning and accounting services to support your business growth.',
     icon: FaChartBar,
     features: [
-      'Tax planning and preparation',
-      'Bookkeeping and payroll',
-      'Financial statement preparation',
+      'Tax planning & preparation',
+      'Bookkeeping services',
+      'Financial reporting',
       'IRS representation'
     ]
   },
   {
-    id: 'ai-technology',
-    title: 'AI & Technology',
-    description: 'Cutting-edge AI and technology solutions to modernize your business operations.',
-    icon: FaRobot,
+    id: 'insurance-services',
+    title: 'Insurance Consulting',
+    description: 'Comprehensive insurance solutions to protect your business and personal assets.',
+    icon: FaShieldAlt,
     features: [
-      'AI implementation consulting',
-      'Process automation solutions',
-      'Technology stack optimization',
-      'Digital transformation strategy'
-    ]
-  },
-  {
-    id: 'automation',
-    title: 'Automation',
-    description: 'Streamline your workflows with intelligent automation solutions.',
-    icon: FaCogs,
-    features: [
-      'Workflow automation design',
-      'Integration with existing systems',
-      'Custom automation development',
-      'Training and support'
-    ]
-  },
-  {
-    id: 'web-development',
-    title: 'Web Development',
-    description: 'Custom web solutions that drive results and enhance your digital presence.',
-    icon: FaGlobe,
-    features: [
-      'Website Design & Development',
-      'E-commerce Solutions',
-      'Web Applications',
-      'Maintenance & Support'
+      'Business insurance coverage',
+      'Cyber liability protection',
+      'Risk assessment',
+      'Policy optimization'
     ]
   }
 ];
 
 export const REASONS_TO_CHOOSE = [
   {
+    icon: FaRobot,
+    title: 'AI & Automation Experts',
+    description: 'Cutting-edge AI solutions and automation systems that work 24/7',
+    link: '/services/ai-driven-growth'
+  },
+  {
+    icon: FaLaptopCode,
+    title: 'Full-Stack Development',
+    description: 'Custom software, web, and mobile apps built with modern tech',
+    link: '/services/technology'
+  },
+  {
     icon: FaBullseye,
-    title: 'Expert Team',
-    description: 'Experienced professionals dedicated to your success',
-    link: '/about'
+    title: 'Results-Driven Marketing',
+    description: 'Digital marketing and creative services that drive real ROI',
+    link: '/services/digital-marketing'
   },
   {
     icon: FaBolt,
-    title: 'Fast Results',
-    description: 'Quick turnaround without compromising quality',
-    link: '/services'
-  },
-  {
-    icon: FaLightbulb,
-    title: 'Innovative Solutions',
-    description: 'Cutting-edge strategies tailored to your needs',
+    title: 'Rapid Deployment',
+    description: 'Fast turnaround on projects without compromising quality',
     link: '/services'
   },
   {
     icon: FaHandshake,
-    title: 'Personalized Service',
-    description: 'One-on-one attention for every client',
-    link: '/book-now'
+    title: 'Complete Business Partner',
+    description: 'Tech, marketing, tax, and insurance - all under one roof',
+    link: '/about'
   },
   {
     icon: FaChartLine,
     title: 'Proven Track Record',
-    description: 'Consistent results across diverse industries',
+    description: '180+ successful projects across diverse industries',
     link: '/testimonials'
-  },
-  {
-    icon: FaLock,
-    title: 'Trusted Partner',
-    description: 'Confidential, reliable, and professional',
-    link: '/about'
   }
 ];
 
@@ -173,76 +192,343 @@ export const BLOG_CATEGORIES = [
 
 // Expanded services with comprehensive details for the redesigned Services page
 export const SERVICES_EXPANDED = [
+  // PRIMARY SERVICES (Technology & Creative)
   {
-    id: 'accounting-services',
-    title: 'Accounting Services',
-    description: 'Comprehensive accounting operations including bookkeeping and financial management for businesses of all sizes.',
-    icon: FaCalculator,
+    id: 'ai-automation',
+    title: 'AI Consulting & Automation',
+    description: 'Deploy intelligent AI agents, chatbots, and automation systems that work 24/7 to scale your business without adding headcount.',
+    icon: FaRobot,
+    link: '/services/ai-driven-growth',
     features: [
-      'Full-service bookkeeping',
-      'Accounts payable/receivable management',
-      'Financial statement preparation',
-      'Payroll processing',
-      'QuickBooks setup and training'
+      'AI chatbots & virtual agents',
+      'Process automation & workflows',
+      'Machine learning solutions',
+      'AI strategy & implementation',
+      '24/7 lead reactivation',
+      'Missed-call text back systems'
     ],
-    detailedDescription: 'Our accounting services cover all aspects of business accounting operations, from day-to-day bookkeeping to comprehensive financial reporting. We help businesses maintain accurate records, ensure compliance, and gain financial clarity.'
+    detailedDescription: 'In the modern economy, speed is the primary currency. We deploy AI systems that engage your leads instantly, ensuring you never miss an opportunity while reducing your manual workload.',
+    isPrimary: true
   },
   {
-    id: 'tax-preparation-consulting',
-    title: 'Tax Preparation & Consulting',
-    description: 'Strategic tax planning and preparation services for individuals and businesses to minimize liability and maximize returns.',
-    icon: FaFileInvoiceDollar,
+    id: 'technology-services',
+    title: 'Custom Software Development',
+    description: 'High-performance web applications, mobile apps, and custom software solutions built with modern tech stacks.',
+    icon: FaLaptopCode,
+    link: '/services/technology',
     features: [
-      'Individual tax return preparation',
-      'Business tax return preparation',
-      'Tax strategy and planning',
-      'IRS audit representation',
-      'Tax compliance consulting'
+      'Custom Web Applications',
+      'Mobile App Development',
+      'API Development & Integration',
+      'Cloud Infrastructure',
+      'CRM & ERP Implementation',
+      'Legacy System Modernization'
     ],
-    detailedDescription: 'We provide comprehensive tax services covering both preparation and strategic consulting. Our experts help individuals and businesses navigate complex tax regulations while identifying opportunities for tax savings.'
+    detailedDescription: 'Technology should be your business advantage, not a bottleneck. We build and maintain the digital infrastructure that connects your finance, operations, and marketing into a unified engine.',
+    isPrimary: true
+  },
+  {
+    id: 'digital-marketing',
+    title: 'Digital Marketing & SEO',
+    description: 'Data-driven marketing strategies including SEO, social media management, PPC advertising, and content marketing.',
+    icon: FaMobileAlt,
+    link: '/services/digital-marketing',
+    features: [
+      'Search Engine Optimization (SEO)',
+      'Social Media Management',
+      'PPC Advertising Campaigns',
+      'Content Marketing Strategy',
+      'Email Marketing Automation',
+      'Performance Analytics'
+    ],
+    detailedDescription: 'We move beyond vanity metrics to focus on revenue. Our marketing systems are designed to feed into our AI automation, creating a seamless path from "click" to "closed sale".',
+    isPrimary: true
+  },
+  {
+    id: 'graphic-design',
+    title: 'Graphic Design & Branding',
+    description: 'Professional graphic design services including logo design, brand identity, marketing materials, and social media graphics.',
+    icon: FaGlobe,
+    link: '/services/graphic-design',
+    features: [
+      'Logo & Brand Identity Design',
+      'Marketing Materials & Collateral',
+      'Social Media Graphics',
+      'UI/UX Design',
+      'Infographics & Data Visualization',
+      'Brand Refresh & Modernization'
+    ],
+    detailedDescription: 'Professional graphic design services that elevate your brand. We create visuals that make your business stand out and communicate your message effectively across all platforms.',
+    isPrimary: true
+  },
+  {
+    id: 'video-production',
+    title: 'Video Production & Editing',
+    description: 'Professional video production and editing services including promotional videos, social media content, and motion graphics.',
+    icon: FaCogs,
+    link: '/services/video-production',
+    features: [
+      'Promotional Videos',
+      'Social Media Video Content',
+      'Explainer Videos',
+      'Professional Video Editing',
+      'Motion Graphics & Animation',
+      'Event Coverage'
+    ],
+    detailedDescription: 'Transform your message with compelling video content. From concept to final delivery, we create professional videos that engage your audience and drive results across all platforms.',
+    isPrimary: true
+  },
+  {
+    id: 'business-automation',
+    title: 'Business Process Automation',
+    description: 'Streamline operations with intelligent workflow automation, system integrations, and process optimization.',
+    icon: FaBolt,
+    link: '/services/ai-driven-growth',
+    features: [
+      'Workflow Automation Design',
+      'CRM & ERP Integration',
+      'Custom Automation Solutions',
+      'System Optimization',
+      'API Integrations',
+      'Process Documentation'
+    ],
+    detailedDescription: 'Eliminate repetitive tasks and streamline your operations with intelligent automation. We design and implement systems that save time, reduce errors, and allow your team to focus on high-value work.',
+    isPrimary: true
+  },
+  
+  // SECONDARY SERVICES (Business Support)
+  {
+    id: 'accounting-services',
+    title: 'Bookkeeping & Accounting',
+    description: 'Full-cycle accounting operations to professionalize your financial reporting and ensure compliance.',
+    icon: FaCalculator,
+    link: '/services/bookkeeping-accounting',
+    features: [
+      'Daily bookkeeping and categorization',
+      'Real-time financial reporting',
+      'Accounts payable/receivable',
+      'Bank and credit card reconciliation',
+      'QuickBooks Online optimization',
+      'Month-end close'
+    ],
+    detailedDescription: 'Our bookkeeping and accounting services focus on transforming your messy books into a powerful management tool. We don\'t just record transactions; we provide the financial clarity needed to make informed business decisions.',
+    isPrimary: false
+  },
+  {
+    id: 'tax-preparation',
+    title: 'Tax Preparation & Compliance',
+    description: 'Precise tax preparation for individuals and businesses, focused on accuracy and audit-readiness.',
+    icon: FaFileInvoiceDollar,
+    link: '/services/tax-preparation',
+    features: [
+      'Federal and state tax returns',
+      'Multi-state filing compliance',
+      'IRS audit representation',
+      'Sales and use tax filings',
+      'Compliance consulting'
+    ],
+    detailedDescription: 'We handle the heavy lifting of tax compliance, ensuring your filings are accurate and submitted on time. Our goal is to minimize your stress and maximize your peace of mind during tax season.',
+    isPrimary: false
+  },
+  {
+    id: 'tax-strategy',
+    title: 'Advanced Tax Strategy',
+    description: 'Proactive tax planning to significantly reduce your effective tax rate through R&D credits, cost segregation, and entity optimization.',
+    icon: FaLightbulb,
+    link: '/services/tax-strategy',
+    features: [
+      'Strategic tax planning',
+      'R&D tax credit studies',
+      'Cost segregation analysis',
+      'Entity structure optimization',
+      'Year-round tax advisory'
+    ],
+    detailedDescription: 'Tax strategy is different from tax preparation. We look ahead to identify significant savings opportunities before the tax year ends, helping you keep more of what you earn.',
+    isPrimary: false
+  },
+  {
+    id: 'business-management',
+    title: 'Business Management Consulting',
+    description: 'Systems-first consulting to turn operational chaos into a scalable, professional business.',
+    icon: FaBriefcase,
+    link: '/services/business-consulting',
+    features: [
+      'Operational systems development',
+      'Cash flow management',
+      'KPI and metrics tracking',
+      'Profitability optimization',
+      'Fractional COO services'
+    ],
+    detailedDescription: 'We help growing businesses professionalize their operations. Our consulting focus is on building the systems and leadership structures needed to scale from "founder-dependent" to "process-driven".',
+    isPrimary: false
   },
   {
     id: 'insurance-consulting',
-    title: 'Insurance Consulting',
-    description: 'Expert guidance across all insurance needs, from homeowners and auto to life insurance and beyond.',
+    title: 'Insurance & Risk Architecture',
+    description: 'Comprehensive risk management across personal and commercial coverage, identifying gaps before they become losses.',
     icon: FaShieldAlt,
+    link: '/services/risk-architecture',
     features: [
-      'Homeowners insurance',
-      'Auto insurance',
-      'Life insurance',
-      'Business insurance',
-      'Health insurance',
-      'Umbrella policies'
+      'Strategic risk audit',
+      'Commercial liability (GL, E&O, Cyber)',
+      'Personal lines (Home, Auto, Umbrella)',
+      'Life & coverage planning',
+      'Policy gap analysis'
     ],
-    detailedDescription: 'Our insurance consulting services cover the full spectrum of everyday insurance needs. We help individuals and families find the right coverage for their homes, vehicles, lives, and more, ensuring comprehensive protection at competitive rates.'
+    detailedDescription: 'We don\'t just sell policies; we architect protection. By auditing your existing coverage against your specific risk profile, we ensure you have the right protection at the right price.',
+    isPrimary: false
   },
+
   {
-    id: 'estate-consulting',
-    title: 'Estate Consulting Services',
-    description: 'Professional estate planning and consulting to protect your legacy and ensure smooth wealth transfer.',
-    icon: FaLandmark,
-    features: [
-      'Estate planning strategy',
-      'Trust establishment',
-      'Beneficiary planning',
-      'Asset protection strategies',
-      'Estate tax planning'
-    ],
-    detailedDescription: 'Our estate consulting services help individuals and families plan for the future, protect assets, and ensure their wishes are carried out. We work with legal and financial professionals to create comprehensive estate plans.'
-  },
-  {
-    id: 'investment-financial-management',
-    title: 'Investment & Financial Management',
-    description: 'Professional investment and financial management services delivered through our strategic partner with CFP® and CFA credentials.',
+    id: 'investment-management',
+    title: 'Investment & Wealth Planning',
+    description: 'Holistic wealth management delivered through strategic partners with CFP® and CFA credentials.',
     icon: FaChartLine,
+    link: '/services/investment-management',
     features: [
-      'Investment portfolio management',
+      'Portfolio management',
       'Retirement planning',
-      'Wealth management',
+      'Fiduciary wealth advisory',
       'Financial planning',
-      'Risk assessment and management'
+      'Risk assessment'
     ],
-    detailedDescription: 'Through our strategic partnership with certified financial professionals (CFP® and CFA), we provide comprehensive investment and financial management services. Our partner brings decades of expertise in portfolio management, retirement planning, and wealth preservation.',
-    partnerDisclosure: 'Investment and financial management services are provided through our strategic partner, a Certified Financial Planner (CFP®) and Chartered Financial Analyst (CFA).'
+    detailedDescription: 'Through our strategic partnership with certified financial professionals, we provide top-tier investment management that syncs perfectly with your tax and business strategy.',
+    partnerDisclosure: 'Investment and financial management services are provided through our strategic partner, a Certified Financial Planner (CFP®) and Chartered Financial Analyst (CFA).',
+    isPrimary: false
+  },
+];
+
+export const INDUSTRIES = [
+  {
+    id: 'contractors',
+    title: 'Contractors & Home Services',
+    description: 'Specialized financial management and risk protection for HVAC, plumbing, electrical, and general contractors.',
+    icon: FaHardHat,
+    link: '/industries/contractors',
+    painPoints: [
+      'Cash flow gaps between project completion and payment',
+      'Workers comp audits and insurance premium volatility'
+    ],
+    solutions: [
+      'Real-time job costing and progress billing (AIA) to accelerate collections',
+      'AI-powered missed-call text-back systems to capture emergency leads 24/7'
+    ],
+    features: [
+      'Job costing & profitability analysis',
+      'Progress billing (AIA)',
+      'Workers comp & GL audit support',
+      'AI lead reactivation for old quotes',
+      'Sales-to-Operations process automation'
+    ]
+  },
+  {
+    id: 'medical-practices',
+    title: 'Medical & Healthcare',
+    description: 'Compliance-first solutions for private practices and healthcare providers, bridging the gap between clinical care and fiscal health.',
+    icon: FaStethoscope,
+    link: '/industries/medical-practices',
+    painPoints: [
+      'Revenue cycle delays and insurance reimbursement complexity',
+      'HIPAA compliance requirements limiting technology adoption'
+    ],
+    solutions: [
+      'Medical billing optimization and denial management systems',
+      'HIPAA-compliant AI appointment scheduling and patient communication'
+    ],
+    features: [
+      'Medical billing & revenue cycle support',
+      'HIPAA-compliant AI agents',
+      'Practice growth automation',
+      'Specialized tax credits (R&D)',
+      'Insurance risk audits'
+    ]
+  },
+  {
+    id: 'real-estate',
+    title: 'Real Estate Investors',
+    description: 'Advanced tax engineering and property-level accounting for investors, developers, and management firms.',
+    icon: FaHome,
+    link: '/industries/real-estate',
+    painPoints: [
+      'High tax burden on rental income and property sales',
+      'Complex multi-property accounting and cash flow tracking'
+    ],
+    solutions: [
+      'Cost segregation studies and 1031 exchange strategy to defer taxes',
+      'Property-level P&L dashboards with automated rent collection tracking'
+    ],
+    features: [
+      'Cost segregation coordination',
+      '1031 exchange strategy',
+      'Property-level P&L management',
+      'Asset protection architecture',
+      'Passive activity loss optimization'
+    ]
+  },
+  {
+    id: 'professional-services',
+    title: 'Professional Services',
+    description: 'Optimization for agencies, consultants, and service-based firms focused on high-margin scalability.',
+    icon: FaUserFriends,
+    link: '/industries/professional-services',
+    painPoints: [
+      'Difficulty tracking project profitability and team utilization',
+      'Scaling challenges without sacrificing service quality'
+    ],
+    solutions: [
+      'Real-time utilization tracking and margin analysis by project',
+      'Fractional COO services and workflow automation to scale operations'
+    ],
+    features: [
+      'Fractional COO & strategy',
+      'Utilization & margin tracking',
+      'Project management automation',
+      'Strategic tax planning',
+      'Executive liability protection'
+    ]
+  },
+  {
+    id: 'ecommerce',
+    title: 'Retail & eCommerce',
+    description: 'Data-driven infrastructure for modern retailers, managing multi-channel complexity and inventory-based tax strategy.',
+    icon: FaShoppingCart,
+    link: '/industries/ecommerce',
+    painPoints: [
+      'Multi-state sales tax compliance and nexus complexity',
+      'Inventory management across multiple sales channels'
+    ],
+    solutions: [
+      'Automated sales tax nexus monitoring and filing services',
+      'Multi-channel inventory accounting with real-time sync and margin tracking'
+    ],
+    features: [
+      'Multi-channel inventory accounting',
+      'Sales tax nexus management',
+      'AI customer support agents',
+      'Margin-based marketing ROI',
+      'Working capital strategy'
+    ]
+  },
+  {
+    id: 'legal-services',
+    title: 'Legal & Specialized Services',
+    description: 'Strategic back-office and tax management for law firms and specialized professional entities.',
+    icon: FaGavel,
+    link: '/industries/legal-services',
+    painPoints: [
+      'Trust accounting compliance and IOLTA management complexity',
+      'Lead intake inefficiency and missed consultation opportunities'
+    ],
+    solutions: [
+      'Trust accounting systems with automated compliance monitoring',
+      'AI-powered lead intake and qualification with instant consultation scheduling'
+    ],
+    features: [
+      'Trust accounting compliance',
+      'Partner compensation structures',
+      'Intelligent lead intake AI',
+      'Professional liability review',
+      'Operations modernization'
+    ]
   }
 ];

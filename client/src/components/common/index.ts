@@ -12,3 +12,10 @@ export { AnimatedBackground } from './AnimatedBackground';
 
 // Existing components (if any)
 export { default as SEO } from './SEO';
+export { default as TrustBar } from './TrustBar';
+export { default as PageHero } from './PageHero';
+export { default as IntegratedPartnerBanner } from './IntegratedPartnerBanner';
+export { default as CTAButton } from './CTAButton';
+export { default as CTASection } from './CTASection';
+export { default as ProcessFlow } from './ProcessFlow';
+export { default as SocialShare } from './SocialShare';

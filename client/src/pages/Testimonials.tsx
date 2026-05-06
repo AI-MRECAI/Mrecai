@@ -117,7 +117,7 @@ const Testimonials = () => {
     <>
       <SEO
         title="Client Testimonials | 4.9/5 Rating | MRECAI Reviews"
-        description="Read what our 500+ clients say about MRECAI. 4.9/5 star rating with 98% satisfaction rate. Real reviews from real businesses and individuals."
+        description="Read what our 180+ clients say about MRECAI. 4.9/5 star rating with 98% satisfaction rate. Real reviews from real businesses and individuals."
         canonical="/testimonials"
         keywords="MRECAI reviews, client testimonials, customer reviews, business consulting reviews, insurance reviews, client satisfaction"
         schema={{
@@ -173,7 +173,7 @@ const Testimonials = () => {
               >
                 <span className="inline-flex items-center px-4 py-2 bg-primary-500/20 border border-primary-400/30 rounded-full text-primary-300 text-sm font-semibold">
                   <FaHeart className="mr-2" />
-                  Trusted by 500+ Clients
+                  Trusted by 180+ Clients
                 </span>
               </motion.div>
 
@@ -213,7 +213,7 @@ const Testimonials = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
               {[
                 { icon: FaStar, number: '4.9', label: 'Average Rating', color: 'from-yellow-500 to-orange-500' },
-                { icon: FaUserCircle, number: '500+', label: 'Happy Clients', color: 'from-primary-500 to-primary-600' },
+                { icon: FaUserCircle, number: '180+', label: 'Happy Clients', color: 'from-primary-500 to-primary-600' },
                 { icon: FaThumbsUp, number: '98%', label: 'Satisfaction Rate', color: 'from-green-500 to-emerald-500' },
                 { icon: FaAward, number: '250+', label: '5-Star Reviews', color: 'from-purple-500 to-pink-500' }
               ].map((stat, index) => (

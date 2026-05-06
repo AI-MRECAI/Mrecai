@@ -63,6 +63,7 @@ import reviewRoutes from './routes/reviewRoutes';
 import blogRoutes from './routes/blogRoutes';
 import aiChatRoutes from './routes/aiChatRoutes';
 import searchRoutes from './routes/searchRoutes';
+import productWaitlistRoutes from './routes/productWaitlistRoutes';
 
 app.use('/api/contact', contactRoutes);
 app.use('/api/quotes', quoteRoutes);
@@ -71,6 +72,7 @@ app.use('/api/reviews', reviewRoutes);
 app.use('/api/blog', blogRoutes);
 app.use('/api/ai-chat', aiChatRoutes);
 app.use('/api', searchRoutes);
+app.use('/api/product-waitlist', productWaitlistRoutes);
 
 // Error handling
 app.use(notFound);

@@ -10,8 +10,12 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [learningDropdownOpen, setLearningDropdownOpen] = useState(false);
+  const [legalDropdownOpen, setLegalDropdownOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileLearningOpen, setMobileLearningOpen] = useState(false);
+  const [mobileLegalOpen, setMobileLegalOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -39,19 +43,27 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Testimonials', path: '/testimonials' },
     { name: 'Blog', path: '/blog' },
-    { name: 'Advice and Education', path: '/advice-education' },
-    { name: 'Intake Forms', path: '/intake-forms' },
-    { name: 'Resources', path: '/resources' },
+    { name: 'Intake Forms', path: '/intake-forms', shortName: 'Forms' },
     { name: 'Contact', path: '/contact' },
+  ];
+
+  const learningLinks = [
+    { name: 'Advice & Education', path: '/advice-education' },
+    { name: 'Resources Hub', path: '/resources' },
+  ];
+
+  const legalLinks = [
+    { name: 'Privacy Policy', path: '/privacy-policy', shortName: 'Privacy' },
+    { name: 'Terms of Service', path: '/terms-of-service', shortName: 'Terms' },
   ];
 
   const aboutLinks = [
     { name: 'Overview', path: '/about' },
     { name: 'About the Company', path: '/about/company' },
-    { name: 'Our Founder', path: '/about/founder' },
+    { name: 'Meet Our People', path: '/about/founder' },
     { name: 'Strategic Partners', path: '/about/partners' },
+    { name: 'Testimonials', path: '/testimonials' },
   ];
 
   const servicesLinks = [
@@ -59,8 +71,11 @@ const Navbar = () => {
     { name: 'AI & Technology Consulting', path: '/ai-consulting' },
   ];
 
-  const isAboutActive = location.pathname.startsWith('/about');
-  const isServicesActive = location.pathname === '/services' || location.pathname === '/ai-consulting';
+  const isAboutActive = location.pathname.startsWith('/about') || location.pathname === '/testimonials';
+  const isServicesActive = location.pathname.startsWith('/services') || location.pathname === '/ai-consulting';
+  const isIndustriesActive = location.pathname.startsWith('/industries');
+  const isLearningActive = location.pathname === '/advice-education' || location.pathname.startsWith('/resources');
+  const isLegalActive = location.pathname === '/privacy-policy' || location.pathname === '/terms-of-service';
 
   return (
     <>
@@ -72,338 +87,445 @@ const Navbar = () => {
         Skip to main content
       </a>
 
-      {/* Top Contact Bar */}
-      <div className={`fixed w-full z-50 bg-navy-900 text-white transition-all duration-300 ${
-        isScrolled ? 'h-0 opacity-0 overflow-hidden' : 'h-auto opacity-100'
-      }`}>
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-2">
+      {/* Top Contact Bar - Redesigned */}
+      <div className={`fixed w-full z-50 bg-gradient-to-r from-navy-900 via-navy-800 to-navy-900 text-white transition-all duration-300 ${isScrolled ? 'h-0 opacity-0 overflow-hidden' : 'h-auto opacity-100'
+        }`}>
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex justify-between items-center text-xs sm:text-sm">
-            <div className="flex items-center space-x-3 sm:space-x-6">
+            <div className="flex items-center space-x-4 sm:space-x-8">
               <a
                 href={`tel:${COMPANY_INFO.phone}`}
-                className="flex items-center space-x-1 sm:space-x-2 text-gray-300 hover:text-primary-400 transition-colors"
+                className="flex items-center space-x-2 text-white hover:text-primary-300 transition-all duration-300 group"
               >
-                <FaPhone className="text-xs flex-shrink-0" />
-                <span>{COMPANY_INFO.phone}</span>
+                <div className="p-1.5 bg-white/10 rounded-lg group-hover:bg-primary-500/20 transition-all">
+                  <FaPhone className="text-xs flex-shrink-0" />
+                </div>
+                <span className="font-medium">{COMPANY_INFO.phone}</span>
               </a>
               <a
                 href={`mailto:${COMPANY_INFO.email}`}
-                className="flex items-center space-x-1 sm:space-x-2 text-gray-300 hover:text-primary-400 transition-colors"
+                className="flex items-center space-x-2 text-white hover:text-primary-300 transition-all duration-300 group"
               >
-                <FaEnvelope className="text-xs flex-shrink-0" />
-                <span className="hidden sm:inline truncate max-w-[150px] md:max-w-none">{COMPANY_INFO.email}</span>
+                <div className="p-1.5 bg-white/10 rounded-lg group-hover:bg-primary-500/20 transition-all">
+                  <FaEnvelope className="text-xs flex-shrink-0" />
+                </div>
+                <span className="hidden sm:inline truncate max-w-[150px] md:max-w-none font-medium">{COMPANY_INFO.email}</span>
               </a>
             </div>
-            <div className="text-gray-400 text-xs hidden xl:block">
-              24/7 Service Support Available
+            <div className="flex items-center space-x-2 text-primary-300 text-xs hidden xl:flex">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span className="font-semibold">24/7 Service Support Available</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Navigation */}
+      {/* Main Navigation - Redesigned */}
       <nav
-        className={`fixed w-full z-40 bg-white shadow-lg transition-all duration-300 ${
-          isScrolled
-            ? 'top-0 py-2'
-            : 'top-10 py-2'
-        }`}
+        className={`fixed w-full z-40 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300 border-b border-gray-100 ${isScrolled
+          ? 'top-0 py-1.5 xl:py-1'
+          : 'top-12 py-2 xl:py-1.5'
+          }`}
       >
-        <div className="max-w-[1600px] mx-auto px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8">
-          <div className="flex items-center justify-between gap-1 sm:gap-2 lg:gap-3 xl:gap-4">
-            {/* Logo */}
-            <Link to="/" className="flex items-center group flex-shrink-0">
-              <motion.div 
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-                className="relative"
-              >
-                <img 
-                  src={logoImage} 
-                  alt="MRE Consulting & Insurance" 
-                  className={`transition-all duration-300 ${
-                    isScrolled ? 'h-10 sm:h-12 md:h-14 lg:h-16 w-auto' : 'h-12 sm:h-14 md:h-16 lg:h-20 w-auto'
-                  } object-contain max-w-[100px] sm:max-w-[120px] md:max-w-[150px] lg:max-w-none`}
-                  loading="eager"
-                  fetchPriority="high"
-                />
-              </motion.div>
-            </Link>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center justify-center flex-1 mx-1 xl:mx-2 2xl:mx-4">
-              <div className="flex items-center gap-0 lg:gap-0.5 xl:gap-1 2xl:gap-2">
-              {/* Home Link */}
-              <Link
-                to="/"
-                className="relative group"
-              >
+        <div className="max-w-[1600px] mx-auto px-4 relative">
+          <div className="flex items-center justify-between py-2 xl:py-1">
+            {/* Logo - Left Side */}
+            <div className="flex items-center flex-shrink-0 z-10">
+              <Link to="/" className="flex items-center group">
                 <motion.div
-                  className={`px-1.5 lg:px-2 xl:px-3 2xl:px-5 py-2 lg:py-2.5 font-semibold text-xs lg:text-sm xl:text-base transition-all duration-300 rounded-lg relative ${
-                    location.pathname === '/'
-                      ? 'text-primary-600 bg-primary-50'
-                      : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
-                  }`}
-                  whileHover={{ y: -2 }}
-                  transition={{ duration: 0.2 }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  className="relative"
                 >
-                  Home
-                  {/* Active indicator - bottom border */}
-                  {location.pathname === '/' && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full"
-                      initial={false}
-                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                    />
-                  )}
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-primary-600/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <img
+                    src={logoImage}
+                    alt="MRE Consulting & Insurance"
+                    className={`relative transition-all duration-300 ${isScrolled ? 'h-8 sm:h-10 md:h-12 lg:h-14 w-auto' : 'h-10 sm:h-12 md:h-14 lg:h-16 w-auto'
+                      } object-contain max-w-[100px] sm:max-w-[120px] md:max-w-[150px] lg:max-w-none`}
+                    loading="eager"
+                    {...({ fetchpriority: 'high' } as any)}
+                  />
                 </motion.div>
               </Link>
-              
-              {/* About Dropdown */}
-              <div 
-                className="relative"
-                onMouseEnter={() => setAboutDropdownOpen(true)}
-                onMouseLeave={() => setAboutDropdownOpen(false)}
-              >
-                <motion.button
-                  className={`px-1.5 lg:px-2 xl:px-3 2xl:px-5 py-2 lg:py-2.5 font-semibold text-xs lg:text-sm xl:text-base transition-all duration-300 rounded-lg flex items-center gap-0.5 lg:gap-1 relative ${
-                    isAboutActive
-                      ? 'text-primary-600 bg-primary-50'
-                      : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
-                  }`}
-                  whileHover={{ y: -2 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <span>About</span>
-                  <motion.div
-                    animate={{ rotate: aboutDropdownOpen ? 180 : 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <FaChevronDown className="text-xs" />
-                  </motion.div>
-                  {/* Active indicator - bottom border */}
-                  {isAboutActive && (
-                    <motion.div
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full"
-                      initial={false}
-                    />
-                  )}
-                </motion.button>
+            </div>
 
-                <AnimatePresence>
-                  {aboutDropdownOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden z-50"
-                    >
-                      {aboutLinks.map((link, index) => (
-                        <Link
-                          key={link.path}
-                          to={link.path}
-                          className={`block px-5 py-3 font-semibold transition-all ${
-                            location.pathname === link.path
-                              ? 'text-primary-600 bg-primary-50'
-                              : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
-                          } ${index !== aboutLinks.length - 1 ? 'border-b border-gray-100' : ''}`}
-                        >
-                          {link.name}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* Services Dropdown */}
-              <div 
-                className="relative"
-                onMouseEnter={() => setServicesDropdownOpen(true)}
-                onMouseLeave={() => setServicesDropdownOpen(false)}
-              >
-                <motion.button
-                  className={`px-1.5 lg:px-2 xl:px-3 2xl:px-5 py-2 lg:py-2.5 font-semibold text-xs lg:text-sm xl:text-base transition-all duration-300 rounded-lg flex items-center gap-0.5 lg:gap-1 relative ${
-                    isServicesActive
-                      ? 'text-primary-600 bg-primary-50'
-                      : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
-                  }`}
-                  whileHover={{ y: -2 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <span>Services</span>
-                  <motion.div
-                    animate={{ rotate: servicesDropdownOpen ? 180 : 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <FaChevronDown className="text-xs" />
-                  </motion.div>
-                  {/* Active indicator - bottom border */}
-                  {isServicesActive && (
-                    <motion.div
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full"
-                      initial={false}
-                    />
-                  )}
-                </motion.button>
-
-                <AnimatePresence>
-                  {servicesDropdownOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden z-50"
-                    >
-                      {servicesLinks.map((link, index) => (
-                        <Link
-                          key={link.path}
-                          to={link.path}
-                          className={`block px-5 py-3 font-semibold transition-all ${
-                            location.pathname === link.path
-                              ? 'text-primary-600 bg-primary-50'
-                              : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
-                          } ${index !== servicesLinks.length - 1 ? 'border-b border-gray-100' : ''}`}
-                        >
-                          {link.name}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-              
-              {/* Remaining Navigation Links */}
-              {navLinks.slice(1).map((link) => (
+            {/* Desktop Navigation - Center */}
+            <nav className="hidden xl:flex items-center justify-center absolute left-1/2 transform -translate-x-1/2 max-w-[60%]">
+              <div className="flex items-center gap-0 xl:gap-0.5 2xl:gap-1">
+                {/* Home Link */}
                 <Link
-                  key={link.path}
-                  to={link.path}
-                  className="relative group"
+                  to="/"
+                  className="relative group flex-shrink-0"
                 >
                   <motion.div
-                    className={`px-1.5 lg:px-2 xl:px-3 2xl:px-5 py-2 lg:py-2.5 font-semibold text-xs lg:text-sm xl:text-base transition-all duration-300 rounded-lg relative whitespace-nowrap ${
-                      location.pathname === link.path
-                        ? 'text-primary-600 bg-primary-50'
-                        : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
-                    }`}
-                    whileHover={{ y: -2 }}
-                    transition={{ duration: 0.2 }}
+                    className={`px-1.5 xl:px-2 2xl:px-3 py-1 xl:py-1.5 2xl:py-2 font-bold text-xs 2xl:text-sm transition-all duration-300 rounded-lg relative ${location.pathname === '/'
+                      ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-lg shadow-primary-500/30'
+                      : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                      }`}
+                    whileHover={{ y: -2, scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
-                    {link.name}
-                    {/* Active indicator - bottom border */}
-                    {location.pathname === link.path && (
-                      <motion.div
-                        layoutId="activeTab"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full"
-                        initial={false}
-                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                      />
-                    )}
+                    Home
                   </motion.div>
                 </Link>
-              ))}
+
+                {/* About Dropdown */}
+                <div
+                  className="relative flex-shrink-0"
+                  onMouseEnter={() => setAboutDropdownOpen(true)}
+                  onMouseLeave={() => setAboutDropdownOpen(false)}
+                >
+                  <motion.button
+                    className={`px-1.5 xl:px-2 2xl:px-3 py-1 xl:py-1.5 2xl:py-2 font-bold text-xs 2xl:text-sm transition-all duration-300 rounded-lg flex items-center gap-1 relative ${isAboutActive
+                      ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-lg shadow-primary-500/30'
+                      : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                      }`}
+                    whileHover={{ y: -2, scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    <span>About</span>
+                    <motion.div
+                      animate={{ rotate: aboutDropdownOpen ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <FaChevronDown className="text-[9px]" />
+                    </motion.div>
+                  </motion.button>
+
+                  <AnimatePresence>
+                    {aboutDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-full left-0 mt-2 w-64 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-50"
+                      >
+                        <div className="p-2">
+                          {aboutLinks.map((link) => (
+                            <Link
+                              key={link.path}
+                              to={link.path}
+                              className={`block px-4 py-3 rounded-xl font-semibold transition-all mb-1 ${location.pathname === link.path
+                                ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-md'
+                                : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                                }`}
+                            >
+                              {link.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Services Dropdown */}
+                <div
+                  className="relative flex-shrink-0"
+                  onMouseEnter={() => setServicesDropdownOpen(true)}
+                  onMouseLeave={() => setServicesDropdownOpen(false)}
+                >
+                  <motion.button
+                    className={`px-1.5 xl:px-2 2xl:px-3 py-1 xl:py-1.5 2xl:py-2 font-bold text-xs 2xl:text-sm transition-all duration-300 rounded-lg flex items-center gap-1 relative ${isServicesActive
+                      ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-lg shadow-primary-500/30'
+                      : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                      }`}
+                    whileHover={{ y: -2, scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    <span>Services</span>
+                    <motion.div
+                      animate={{ rotate: servicesDropdownOpen ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <FaChevronDown className="text-[9px]" />
+                    </motion.div>
+                  </motion.button>
+
+                  <AnimatePresence>
+                    {servicesDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-full left-0 mt-2 w-72 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-50"
+                      >
+                        <div className="p-2">
+                          {servicesLinks.map((link) => (
+                            <Link
+                              key={link.path}
+                              to={link.path}
+                              className={`block px-4 py-3 rounded-xl font-semibold transition-all mb-1 ${location.pathname === link.path
+                                ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-md'
+                                : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                                }`}
+                            >
+                              {link.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Products Link */}
+                <Link
+                  to="/products"
+                  className="relative group flex-shrink-0"
+                >
+                  <motion.div
+                    className={`px-1.5 xl:px-2 2xl:px-3 py-1 xl:py-1.5 2xl:py-2 font-bold text-xs 2xl:text-sm transition-all duration-300 rounded-lg relative ${location.pathname === '/products'
+                      ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-lg shadow-primary-500/30'
+                      : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                      }`}
+                    whileHover={{ y: -2, scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    Our Products
+                  </motion.div>
+                </Link>
+
+                {/* Industries Link */}
+                <Link
+                  to="/industries"
+                  className="relative group flex-shrink-0"
+                >
+                  <motion.div
+                    className={`px-1.5 xl:px-2 2xl:px-3 py-1 xl:py-1.5 2xl:py-2 font-bold text-xs 2xl:text-sm transition-all duration-300 rounded-lg relative ${isIndustriesActive
+                      ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-lg shadow-primary-500/30'
+                      : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                      }`}
+                    whileHover={{ y: -2, scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    Industries
+                  </motion.div>
+                </Link>
+
+                {/* Learning Center Dropdown */}
+                <div
+                  className="relative flex-shrink-0"
+                  onMouseEnter={() => setLearningDropdownOpen(true)}
+                  onMouseLeave={() => setLearningDropdownOpen(false)}
+                >
+                  <motion.button
+                    className={`px-1.5 xl:px-2 2xl:px-3 py-1 xl:py-1.5 2xl:py-2 font-bold text-xs 2xl:text-sm transition-all duration-300 rounded-lg flex items-center gap-1 relative ${isLearningActive
+                      ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-lg shadow-primary-500/30'
+                      : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                      }`}
+                    whileHover={{ y: -2, scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    <span className="hidden 2xl:inline">Learning Center</span>
+                    <span className="2xl:hidden">Learn</span>
+                    <motion.div
+                      animate={{ rotate: learningDropdownOpen ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <FaChevronDown className="text-[9px]" />
+                    </motion.div>
+                  </motion.button>
+
+                  <AnimatePresence>
+                    {learningDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-full left-0 mt-2 w-72 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-50"
+                      >
+                        <div className="p-2">
+                          {learningLinks.map((link) => (
+                            <Link
+                              key={link.path}
+                              to={link.path}
+                              className={`block px-4 py-3 rounded-xl font-semibold transition-all mb-1 ${location.pathname === link.path
+                                ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-md'
+                                : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                                }`}
+                            >
+                              {link.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Remaining Navigation Links */}
+                {navLinks.slice(1).map((link) => (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className="relative group flex-shrink-0"
+                  >
+                    <motion.div
+                      className={`px-1.5 xl:px-2 2xl:px-3 py-1 xl:py-1.5 2xl:py-2 font-bold text-xs 2xl:text-sm transition-all duration-300 rounded-lg relative whitespace-nowrap ${location.pathname === link.path
+                        ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-lg shadow-primary-500/30'
+                        : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                        }`}
+                      whileHover={{ y: -2, scale: 1.05 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    >
+                      <span className="hidden 2xl:inline">{link.name}</span>
+                      <span className="2xl:hidden">{link.shortName || link.name}</span>
+                    </motion.div>
+                  </Link>
+                ))}
+
+                {/* Legal Dropdown */}
+                <div
+                  className="relative flex-shrink-0"
+                  onMouseEnter={() => setLegalDropdownOpen(true)}
+                  onMouseLeave={() => setLegalDropdownOpen(false)}
+                >
+                  <motion.button
+                    className={`px-1.5 xl:px-2 2xl:px-3 py-1 xl:py-1.5 2xl:py-2 font-bold text-xs 2xl:text-sm transition-all duration-300 rounded-lg flex items-center gap-1 relative ${isLegalActive
+                      ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-lg shadow-primary-500/30'
+                      : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                      }`}
+                    whileHover={{ y: -2, scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    <span>Legal</span>
+                    <motion.div
+                      animate={{ rotate: legalDropdownOpen ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <FaChevronDown className="text-[9px]" />
+                    </motion.div>
+                  </motion.button>
+
+                  <AnimatePresence>
+                    {legalDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-full left-0 mt-2 w-56 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-50"
+                      >
+                        <div className="p-2">
+                          {legalLinks.map((link) => (
+                            <Link
+                              key={link.path}
+                              to={link.path}
+                              className={`block px-4 py-3 rounded-xl font-semibold transition-all mb-1 ${location.pathname === link.path
+                                ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-md'
+                                : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                                }`}
+                            >
+                              {link.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
             </nav>
-            
-            {/* CTA Button - Far Right */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="hidden lg:block flex-shrink-0"
-            >
-              <Link 
-                to="/book-now" 
-                className={`px-2 lg:px-3 xl:px-4 2xl:px-6 py-1.5 lg:py-2 text-white font-bold text-xs lg:text-sm xl:text-base rounded-lg transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-1 xl:gap-2 whitespace-nowrap ${
-                  location.pathname === '/book-now'
-                    ? 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700'
-                    : 'bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700'
-                }`}
-              >
-                <span className="hidden 2xl:inline">{location.pathname === '/book-now' ? 'You\'re Here!' : 'Book Now'}</span>
-                <span className="2xl:hidden">Book</span>
-                {location.pathname !== '/book-now' && (
-                  <motion.span
-                    animate={{ x: [0, 3, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    →
-                  </motion.span>
-                )}
-              </Link>
-            </motion.div>
 
-            {/* Mobile Menu Button */}
-            <motion.button
-              onClick={() => setIsOpen(!isOpen)}
-              whileTap={{ scale: 0.95 }}
-              className="lg:hidden p-2 sm:p-3 rounded-xl transition-all duration-300 text-primary-600 hover:bg-primary-50 bg-white shadow-md border border-gray-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 flex-shrink-0"
-              aria-label={isOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={isOpen}
-            >
-              <motion.div
-                animate={{ rotate: isOpen ? 90 : 0 }}
-                transition={{ duration: 0.3 }}
+            {/* Right Side: CTA & Mobile Toggle */}
+            <div className="flex items-center gap-4 flex-shrink-0 z-10">
+              {/* CTA Button */}
+              <div className="hidden xl:block">
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  <Link
+                    to="/book-now"
+                    className={`relative px-2 xl:px-3 2xl:px-4 py-1 xl:py-1.5 2xl:py-2 text-white font-bold text-[9px] xl:text-[10px] 2xl:text-xs rounded-lg transition-all duration-300 shadow-lg hover:shadow-2xl inline-flex items-center gap-1 whitespace-nowrap overflow-hidden group ${location.pathname === '/book-now'
+                      ? 'bg-gradient-to-r from-green-500 to-green-600'
+                      : 'bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700'
+                      }`}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                    <span className="relative">
+                      <span className="hidden 2xl:inline">{location.pathname === '/book-now' ? 'You\'re Here!' : 'Book Consultation'}</span>
+                      <span className="2xl:hidden">{location.pathname === '/book-now' ? 'Here!' : 'Book Now'}</span>
+                    </span>
+                  </Link>
+                </motion.div>
+              </div>
+
+              {/* Mobile Menu Button */}
+              <motion.button
+                onClick={() => setIsOpen(!isOpen)}
+                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.05 }}
+                className="xl:hidden p-2.5 sm:p-3 rounded-xl transition-all duration-300 text-white bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 shadow-lg hover:shadow-xl border-2 border-primary-400/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 flex-shrink-0 z-10"
+                aria-label={isOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={isOpen}
               >
-                {isOpen ? <FaTimes className="text-xl sm:text-2xl" /> : <FaBars className="text-xl sm:text-2xl" />}
-              </motion.div>
-            </motion.button>
+                <motion.div
+                  animate={{ rotate: isOpen ? 180 : 0 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                >
+                  {isOpen ? <FaTimes className="text-xl sm:text-2xl" /> : <FaBars className="text-xl sm:text-2xl" />}
+                </motion.div>
+              </motion.button>
+            </div>
           </div>
 
-          {/* Mobile Navigation */}
+          {/* Mobile Navigation - Redesigned */}
           <AnimatePresence>
             {isOpen && (
               <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-                className="lg:hidden mt-4 sm:mt-6 bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100"
+                initial={{ opacity: 0, height: 0, scale: 0.95 }}
+                animate={{ opacity: 1, height: 'auto', scale: 1 }}
+                exit={{ opacity: 0, height: 0, scale: 0.95 }}
+                transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 25 }}
+                className="xl:hidden mt-4 sm:mt-6 bg-gradient-to-br from-white via-gray-50 to-white rounded-3xl shadow-2xl overflow-hidden border-2 border-gray-200"
               >
-                <div className="flex flex-col p-4 sm:p-6 space-y-2 max-h-[calc(100vh-120px)] overflow-y-auto">
+                <div className="flex flex-col p-4 sm:p-6 pb-10 space-y-2 max-h-[calc(100vh-120px)] overflow-y-auto">
                   {/* Home Link */}
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0 }}
+                    transition={{ delay: 0.05, type: "spring", stiffness: 300 }}
                   >
                     <Link
                       to="/"
-                      className={`block px-4 py-3 rounded-lg font-semibold transition-all relative ${
-                        location.pathname === '/'
-                          ? 'text-primary-600 bg-primary-50 border-l-4 border-primary-600'
-                          : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
-                      }`}
+                      className={`block px-5 py-3.5 rounded-xl font-bold transition-all relative ${location.pathname === '/'
+                        ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-lg shadow-primary-500/30'
+                        : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                        }`}
                     >
                       Home
                     </Link>
                   </motion.div>
-                  
+
                   {/* Mobile About Dropdown */}
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.05 }}
+                    transition={{ delay: 0.1, type: "spring", stiffness: 300 }}
                   >
                     <button
                       onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
-                      className={`w-full flex items-center justify-between px-4 py-3 rounded-lg font-semibold transition-all ${
-                        isAboutActive
-                          ? 'text-primary-600 bg-primary-50 border-l-4 border-primary-600'
-                          : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
-                      }`}
+                      className={`w-full flex items-center justify-between px-5 py-3.5 rounded-xl font-bold transition-all ${isAboutActive
+                        ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-lg shadow-primary-500/30'
+                        : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                        }`}
                     >
                       <span>About</span>
                       <motion.div
                         animate={{ rotate: mobileAboutOpen ? 180 : 0 }}
-                        transition={{ duration: 0.2 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 15 }}
                       >
-                        <FaChevronDown className="text-xs" />
+                        <FaChevronDown className="text-sm" />
                       </motion.div>
                     </button>
-                    
+
                     <AnimatePresence>
                       {mobileAboutOpen && (
                         <motion.div
@@ -411,17 +533,16 @@ const Navbar = () => {
                           animate={{ opacity: 1, height: 'auto' }}
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.2 }}
-                          className="mt-2 ml-4 space-y-1"
+                          className="mt-2 ml-4 space-y-1.5"
                         >
                           {aboutLinks.map((link) => (
                             <Link
                               key={link.path}
                               to={link.path}
-                              className={`block px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                                location.pathname === link.path
-                                  ? 'text-primary-600 bg-primary-50'
-                                  : 'text-gray-600 hover:text-primary-600 hover:bg-gray-50'
-                              }`}
+                              className={`block px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${location.pathname === link.path
+                                ? 'text-white bg-gradient-to-r from-primary-400 to-primary-500 shadow-md'
+                                : 'text-gray-600 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                                }`}
                             >
                               {link.name}
                             </Link>
@@ -435,25 +556,24 @@ const Navbar = () => {
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.10 }}
+                    transition={{ delay: 0.15, type: "spring", stiffness: 300 }}
                   >
                     <button
                       onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                      className={`w-full flex items-center justify-between px-4 py-3 rounded-lg font-semibold transition-all ${
-                        isServicesActive
-                          ? 'text-primary-600 bg-primary-50 border-l-4 border-primary-600'
-                          : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
-                      }`}
+                      className={`w-full flex items-center justify-between px-5 py-3.5 rounded-xl font-bold transition-all ${isServicesActive
+                        ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-lg shadow-primary-500/30'
+                        : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                        }`}
                     >
                       <span>Services</span>
                       <motion.div
                         animate={{ rotate: mobileServicesOpen ? 180 : 0 }}
-                        transition={{ duration: 0.2 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 15 }}
                       >
-                        <FaChevronDown className="text-xs" />
+                        <FaChevronDown className="text-sm" />
                       </motion.div>
                     </button>
-                    
+
                     <AnimatePresence>
                       {mobileServicesOpen && (
                         <motion.div
@@ -461,17 +581,16 @@ const Navbar = () => {
                           animate={{ opacity: 1, height: 'auto' }}
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.2 }}
-                          className="mt-2 ml-4 space-y-1"
+                          className="mt-2 ml-4 space-y-1.5"
                         >
                           {servicesLinks.map((link) => (
                             <Link
                               key={link.path}
                               to={link.path}
-                              className={`block px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                                location.pathname === link.path
-                                  ? 'text-primary-600 bg-primary-50'
-                                  : 'text-gray-600 hover:text-primary-600 hover:bg-gray-50'
-                              }`}
+                              className={`block px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${location.pathname === link.path
+                                ? 'text-white bg-gradient-to-r from-primary-400 to-primary-500 shadow-md'
+                                : 'text-gray-600 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                                }`}
                             >
                               {link.name}
                             </Link>
@@ -480,48 +599,179 @@ const Navbar = () => {
                       )}
                     </AnimatePresence>
                   </motion.div>
-                  
+
+                  {/* Mobile Industries Link */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
+                  >
+                    <Link
+                      to="/products"
+                      className={`block px-5 py-3.5 rounded-xl font-bold transition-all relative ${location.pathname === '/products'
+                        ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-lg shadow-primary-500/30'
+                        : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                        }`}
+                    >
+                      Our Products
+                    </Link>
+                  </motion.div>
+
+                  {/* Mobile Industries Link */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.25, type: "spring", stiffness: 300 }}
+                  >
+                    <Link
+                      to="/industries"
+                      className={`block px-5 py-3.5 rounded-xl font-bold transition-all relative ${isIndustriesActive
+                        ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-lg shadow-primary-500/30'
+                        : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                        }`}
+                    >
+                      Industries
+                    </Link>
+                  </motion.div>
+
+                  {/* Mobile Learning Center Dropdown */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3, type: "spring", stiffness: 300 }}
+                  >
+                    <button
+                      onClick={() => setMobileLearningOpen(!mobileLearningOpen)}
+                      className={`w-full flex items-center justify-between px-5 py-3.5 rounded-xl font-bold transition-all ${isLearningActive
+                        ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-lg shadow-primary-500/30'
+                        : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                        }`}
+                    >
+                      <span>Learning Center</span>
+                      <motion.div
+                        animate={{ rotate: mobileLearningOpen ? 180 : 0 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                      >
+                        <FaChevronDown className="text-sm" />
+                      </motion.div>
+                    </button>
+
+                    <AnimatePresence>
+                      {mobileLearningOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="mt-2 ml-4 space-y-1.5"
+                        >
+                          {learningLinks.map((link) => (
+                            <Link
+                              key={link.path}
+                              to={link.path}
+                              className={`block px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${location.pathname === link.path
+                                ? 'text-white bg-gradient-to-r from-primary-400 to-primary-500 shadow-md'
+                                : 'text-gray-600 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                                }`}
+                            >
+                              {link.name}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+
                   {/* Remaining Navigation Links */}
                   {navLinks.slice(1).map((link, index) => (
                     <motion.div
                       key={link.path}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: (index + 3) * 0.05 }}
+                      transition={{ delay: (index + 4) * 0.05, type: "spring", stiffness: 300 }}
                     >
                       <Link
                         to={link.path}
-                        className={`block px-4 py-3 rounded-lg font-semibold transition-all relative ${
-                          location.pathname === link.path
-                            ? 'text-primary-600 bg-primary-50 border-l-4 border-primary-600'
-                            : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
-                        }`}
+                        className={`block px-5 py-3.5 rounded-xl font-bold transition-all relative ${location.pathname === link.path
+                          ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-lg shadow-primary-500/30'
+                          : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                          }`}
                       >
                         {link.name}
                       </Link>
                     </motion.div>
                   ))}
-                  
-                  <div className="border-t border-gray-100 my-4"></div>
-                  
+
+                  {/* Mobile Legal Dropdown */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: (navLinks.length + 3) * 0.05, type: "spring", stiffness: 300 }}
+                  >
+                    <button
+                      onClick={() => setMobileLegalOpen(!mobileLegalOpen)}
+                      className={`w-full flex items-center justify-between px-5 py-3.5 rounded-xl font-bold transition-all ${isLegalActive
+                        ? 'text-white bg-gradient-to-r from-primary-500 to-primary-600 shadow-lg shadow-primary-500/30'
+                        : 'text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                        }`}
+                    >
+                      <span>Legal</span>
+                      <motion.div
+                        animate={{ rotate: mobileLegalOpen ? 180 : 0 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                      >
+                        <FaChevronDown className="text-sm" />
+                      </motion.div>
+                    </button>
+
+                    <AnimatePresence>
+                      {mobileLegalOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="mt-2 ml-4 space-y-1.5"
+                        >
+                          {legalLinks.map((link) => (
+                            <Link
+                              key={link.path}
+                              to={link.path}
+                              className={`block px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${location.pathname === link.path
+                                ? 'text-white bg-gradient-to-r from-primary-400 to-primary-500 shadow-md'
+                                : 'text-gray-600 hover:text-primary-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50'
+                                }`}
+                            >
+                              {link.name}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+
+                  <div className="border-t-2 border-gray-200 my-4"></div>
+
                   <a
                     href={`tel:${COMPANY_INFO.phone}`}
-                    className="flex items-center space-x-3 px-4 py-3 text-primary-600 hover:bg-primary-50 rounded-lg font-semibold transition-all"
+                    className="flex items-center space-x-3 px-5 py-3.5 text-primary-600 hover:text-white hover:bg-gradient-to-r hover:from-primary-500 hover:to-primary-600 rounded-xl font-bold transition-all shadow-sm hover:shadow-lg"
                   >
-                    <FaPhone />
+                    <div className="p-2 bg-primary-100 rounded-lg">
+                      <FaPhone />
+                    </div>
                     <span>{COMPANY_INFO.phone}</span>
                   </a>
-                  
+
                   {/* CTA Button - Separate from navigation, always prominent */}
-                  <Link 
-                    to="/book-now" 
-                    className={`block text-center px-6 py-4 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all mt-2 ${
-                      location.pathname === '/book-now'
-                        ? 'bg-gradient-to-r from-green-500 to-green-600'
-                        : 'bg-gradient-to-r from-primary-500 to-primary-600'
-                    }`}
+                  <Link
+                    to="/book-now"
+                    className={`flex items-center justify-center w-full text-center px-5 sm:px-6 py-4 text-white font-bold text-sm sm:text-base rounded-xl shadow-xl hover:shadow-2xl transition-all mt-4 relative overflow-hidden group h-auto leading-normal ${location.pathname === '/book-now'
+                      ? 'bg-gradient-to-r from-green-500 to-green-600'
+                      : 'bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700'
+                      }`}
                   >
-                    {location.pathname === '/book-now' ? 'You\'re on the Booking Page!' : 'Book Free Consultation'}
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                    <span className="relative">{location.pathname === '/book-now' ? 'You\'re on the Booking Page!' : 'Book Consultation'}</span>
                   </Link>
                 </div>
               </motion.div>

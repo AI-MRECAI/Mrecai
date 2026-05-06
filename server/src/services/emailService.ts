@@ -247,5 +247,114 @@ export const emailTemplates = {
       </body>
       </html>
     `
+  }),
+
+  productWaitlistNotification: (email: string) => ({
+    subject: 'New A.T.L.A.S. ENGINE Waitlist Signup',
+    html: `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+          .header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
+          .content { background: #f9fafb; padding: 30px; border-radius: 0 0 10px 10px; }
+          .field { margin-bottom: 20px; }
+          .label { font-weight: bold; color: #1e3a8a; margin-bottom: 5px; }
+          .value { background: white; padding: 12px; border-radius: 5px; border-left: 3px solid #3b82f6; }
+          .footer { text-align: center; margin-top: 30px; color: #6b7280; font-size: 14px; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1 style="margin: 0;">🚀 New A.T.L.A.S. ENGINE Waitlist Signup</h1>
+          </div>
+          <div class="content">
+            <div class="field">
+              <div class="label">Email:</div>
+              <div class="value"><a href="mailto:${email}">${email}</a></div>
+            </div>
+            <div class="field">
+              <div class="label">Product:</div>
+              <div class="value">A.T.L.A.S. ENGINE</div>
+            </div>
+            <div class="field">
+              <div class="label">Launch Date:</div>
+              <div class="value">June 1, 2026</div>
+            </div>
+          </div>
+          <div class="footer">
+            <p>This email was sent from your A.T.L.A.S. ENGINE waitlist form</p>
+            <p>MRE Consulting & Insurance | <a href="https://mrecai.com">mrecai.com</a></p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `
+  }),
+
+  productWaitlistConfirmation: (email: string) => ({
+    subject: 'You\'re on the A.T.L.A.S. ENGINE Waitlist',
+    html: `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+          .header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
+          .content { background: #f9fafb; padding: 30px; border-radius: 0 0 10px 10px; }
+          .button { display: inline-block; background: #3b82f6; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; margin: 20px 0; }
+          .highlight-box { background: white; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 3px solid #3b82f6; }
+          .footer { text-align: center; margin-top: 30px; color: #6b7280; font-size: 14px; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1 style="margin: 0;">🎯 You're In!</h1>
+          </div>
+          <div class="content">
+            <h2 style="color: #1e3a8a;">Welcome to the A.T.L.A.S. ENGINE Waitlist</h2>
+            <p>Thank you for joining the waitlist for <strong>A.T.L.A.S. ENGINE</strong> — the fully autonomous revenue engine launching June 1, 2026.</p>
+            
+            <div class="highlight-box">
+              <h3 style="margin-top: 0; color: #1e3a8a;">What Happens Next?</h3>
+              <p style="margin: 10px 0;">✅ You're confirmed on our priority waitlist</p>
+              <p style="margin: 10px 0;">📧 We'll reach out before June 1 with early access details</p>
+              <p style="margin: 10px 0;">🎁 Waitlist members get priority deployment + locked-in rates</p>
+            </div>
+
+            <p><strong>A.T.L.A.S. ENGINE</strong> hunts, qualifies, enriches, and delivers ready-to-close prospects — while your team focuses on closing, not chasing.</p>
+
+            <div style="text-align: center;">
+              <a href="https://mrecai.com" class="button">Learn More About MRECAI</a>
+            </div>
+
+            <div class="highlight-box">
+              <h3 style="margin-top: 0; color: #1e3a8a;">Questions?</h3>
+              <p style="margin: 10px 0;">📞 <strong>Phone:</strong> <a href="tel:929-919-3574">929-919-3574</a></p>
+              <p style="margin: 10px 0;">📧 <strong>Email:</strong> <a href="mailto:Matthew@MRECAI.com">Matthew@MRECAI.com</a></p>
+            </div>
+
+            <p style="margin-top: 30px;">
+              Best regards,<br>
+              <strong>The MRECAI Team</strong>
+            </p>
+          </div>
+          <div class="footer">
+            <p>MRE Consulting & Insurance</p>
+            <p>📍 New York, NY | 📞 929-919-3574 | 🌐 <a href="https://mrecai.com">mrecai.com</a></p>
+            <p style="margin-top: 20px; font-size: 12px;">
+              This email was sent because you joined the A.T.L.A.S. ENGINE waitlist.<br>
+              If you didn't sign up, please ignore this email.
+            </p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `
   })
 };

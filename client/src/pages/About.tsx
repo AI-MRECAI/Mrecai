@@ -8,10 +8,10 @@ const About = () => {
   return (
     <>
       <SEO
-        title="About MRECAI | Expert Business Consulting & Insurance"
-        description="Learn about MRE Consulting & Insurance. Founded in 2024, we provide expert consulting, insurance, and technology solutions with a proven track record of 500+ satisfied clients."
+        title="About MRECAI | AI Consulting & Technology Innovation Leaders"
+        description="Learn about MRE Consulting & Insurance. Technology-first business transformation firm specializing in AI consulting, custom software development, and digital marketing. Serving 180+ clients since 2024."
         canonical="/about"
-        keywords="about MRECAI, business consulting company, insurance agency, company history, our mission"
+        keywords="about MRECAI, AI consulting company, software development firm, technology innovation, digital transformation, company history"
         schema={{
           '@context': 'https://schema.org',
           '@graph': [
@@ -55,7 +55,7 @@ const About = () => {
               >
                 <span className="inline-flex items-center px-4 py-2 bg-primary-500/20 border border-primary-400/30 rounded-full text-primary-300 text-sm font-semibold">
                   <FaUsers className="mr-2" />
-                  Trusted by 500+ Clients
+                  Trusted by 180+ Clients
                 </span>
               </motion.div>
 
@@ -63,14 +63,14 @@ const About = () => {
                 About <span className="bg-gradient-to-r from-primary-400 via-primary-300 to-primary-500 bg-clip-text text-transparent">MRECAI</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
-                Empowering individuals, families, and businesses with expert consulting and insurance solutions
+                Technology-first business transformation through AI consulting, custom software development, and digital innovation
               </p>
 
               {/* Stats Row */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-12">
                 {[
                   { number: '2024', label: 'Founded' },
-                  { number: '500+', label: 'Happy Clients' },
+                  { number: '180+', label: 'Happy Clients' },
                   { number: '98%', label: 'Success Rate' },
                   { number: '24/7', label: 'Support' }
                 ].map((stat, index) => (
@@ -112,8 +112,8 @@ const About = () => {
               {[
                 {
                   icon: FaUserTie,
-                  title: 'Meet Our Founder',
-                  description: 'Learn about Matthew Epstein, our President and Founder, his vision, and extensive industry experience',
+                  title: 'Meet Our People',
+                  description: 'Learn about our leadership team including Wajid Ali Shah (CTO), Matthew R. Epstein (President & Founder), and Jessie Gwilt (CMO)',
                   link: '/about/founder',
                   color: 'from-primary-500 to-primary-600'
                 },
@@ -185,11 +185,11 @@ const About = () => {
                 >
                   <div className="bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl p-8 text-white shadow-2xl">
                     <FaRocket className="text-5xl mb-4 opacity-80" />
-                    <h3 className="text-2xl font-bold mb-4">Driving Your Success</h3>
+                    <h3 className="text-2xl font-bold mb-4">Driving Digital Transformation</h3>
                     <p className="text-lg leading-relaxed opacity-90">
-                      At MRE Consulting & Insurance, our mission is to empower our clients with innovative solutions
-                      that drive growth, efficiency, and security. We believe in building lasting partnerships based
-                      on trust, expertise, and measurable results.
+                      At MRE Consulting & Insurance, our mission is to empower businesses with cutting-edge AI solutions,
+                      custom software development, and innovative digital marketing strategies. We transform operations through
+                      intelligent automation and modern technology, backed by comprehensive business support services.
                     </p>
                   </div>
                   {/* Decorative Element */}
@@ -208,8 +208,8 @@ const About = () => {
                       <FaUsers className="text-primary-600 text-xl" />
                     </div>
                     <div>
-                      <h4 className="text-xl font-bold text-navy-900 mb-2">For Individuals & Families</h4>
-                      <p className="text-gray-600">Personalized financial guidance and protection for your future</p>
+                      <h4 className="text-xl font-bold text-navy-900 mb-2">For Small & Medium Businesses</h4>
+                      <p className="text-gray-600">AI-powered automation and custom software to scale efficiently</p>
                     </div>
                   </div>
 
@@ -218,8 +218,8 @@ const About = () => {
                       <FaChartLine className="text-primary-600 text-xl" />
                     </div>
                     <div>
-                      <h4 className="text-xl font-bold text-navy-900 mb-2">For Growing Businesses</h4>
-                      <p className="text-gray-600">Strategic insights and hands-on support to scale your operations</p>
+                      <h4 className="text-xl font-bold text-navy-900 mb-2">For Growth-Stage Companies</h4>
+                      <p className="text-gray-600">Digital marketing, brand development, and technology infrastructure</p>
                     </div>
                   </div>
 
@@ -228,8 +228,8 @@ const About = () => {
                       <FaAward className="text-primary-600 text-xl" />
                     </div>
                     <div>
-                      <h4 className="text-xl font-bold text-navy-900 mb-2">Excellence in Service</h4>
-                      <p className="text-gray-600">Committed to delivering exceptional results and lasting value</p>
+                      <h4 className="text-xl font-bold text-navy-900 mb-2">Complete Business Support</h4>
+                      <p className="text-gray-600">Tax planning, insurance consulting, and financial guidance included</p>
                     </div>
                   </div>
                 </motion.div>
@@ -330,7 +330,7 @@ const About = () => {
                   Innovation
                 </h3>
                 <p className="text-gray-600 text-center leading-relaxed">
-                  We embrace cutting-edge technology and creative solutions to solve complex challenges effectively.
+                  We leverage cutting-edge AI, automation, and modern tech stacks to deliver transformative solutions that drive real business results.
                 </p>
                 <div className="absolute -bottom-2 -right-2 w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-10 rounded-full blur-xl transition-opacity duration-300"></div>
               </motion.div>
@@ -363,25 +363,25 @@ const About = () => {
                 {
                   icon: FaCog,
                   title: 'NovaEdge Solutions',
-                  description: 'AI-driven software development and digital transformation partner with 15+ years of expertise.',
-                  gradient: 'from-primary-500 to-primary-600'
+                  description: 'Strategic technology partner providing AI development, software engineering, and digital transformation expertise.',
+                  gradient: 'from-purple-500 to-purple-600'
                 },
                 {
                   icon: FaShieldAlt,
                   title: 'Grober Imbey Insurance',
                   description: 'Over 50 years of excellence in personal and commercial insurance solutions.',
-                  gradient: 'from-primary-600 to-primary-700'
+                  gradient: 'from-blue-600 to-blue-700'
                 },
                 {
                   icon: FaChartLine,
                   title: 'Financial Advisors',
-                  description: 'Trusted wealth management and financial planning partners.',
+                  description: 'Certified wealth management and financial planning partners for comprehensive support.',
                   gradient: 'from-green-500 to-emerald-500'
                 },
                 {
                   icon: FaCalculator,
                   title: 'Accounting Partners',
-                  description: 'Certified professionals for tax preparation and bookkeeping services.',
+                  description: 'Professional tax preparation, bookkeeping, and financial compliance services.',
                   gradient: 'from-green-600 to-emerald-600'
                 }
               ].map((partner, index) => (
@@ -449,14 +449,14 @@ const About = () => {
                 {
                   year: '2024',
                   quarter: 'Q4',
-                  title: 'Technology Integration',
-                  description: 'Partnered with NovaEdge Solutions to deliver cutting-edge AI and automation solutions, positioning ourselves as innovation leaders.',
+                  title: 'AI & Technology Focus',
+                  description: 'Pivoted to technology-first positioning, partnering with NovaEdge Solutions to deliver cutting-edge AI consulting, custom software development, and automation solutions.',
                   color: 'from-purple-500 to-pink-500'
                 },
                 {
                   year: '2025',
-                  title: 'Continued Excellence',
-                  description: 'Serving 500+ satisfied clients with a 98% success rate, committed to delivering exceptional results and expanding our comprehensive service offerings.',
+                  title: 'Continued Innovation',
+                  description: 'Serving 180+ clients with comprehensive AI solutions, custom software, digital marketing, and creative services, complemented by tax and insurance support.',
                   color: 'from-orange-500 to-red-500'
                 }
               ].map((milestone, index) => (
@@ -509,7 +509,7 @@ const About = () => {
                 Why Choose <span className="gradient-text">MRECAI</span>
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                We're more than just consultants - we're your partners in success
+                Your complete technology transformation partner
               </p>
             </motion.div>
 
@@ -517,38 +517,38 @@ const About = () => {
               {[
                 {
                   icon: FaCheckCircle,
-                  title: 'Proven Track Record',
-                  description: '15+ years of delivering exceptional results with a 98% client satisfaction rate',
-                  gradient: 'from-green-500 to-emerald-500'
+                  title: 'AI-First Approach',
+                  description: 'Cutting-edge AI consulting and automation solutions that transform business operations',
+                  gradient: 'from-purple-500 to-purple-600'
                 },
                 {
                   icon: FaUsers,
-                  title: 'Expert Team',
-                  description: 'Certified professionals with deep expertise across all service areas',
+                  title: 'Expert Technology Team',
+                  description: 'Certified developers, AI specialists, and digital marketing professionals',
                   gradient: 'from-primary-500 to-primary-600'
                 },
                 {
                   icon: FaClock,
-                  title: '24/7 Support',
-                  description: 'Round-the-clock availability to address your needs whenever they arise',
-                  gradient: 'from-purple-500 to-pink-500'
+                  title: 'Rapid Deployment',
+                  description: 'Fast turnaround on projects without compromising quality or innovation',
+                  gradient: 'from-blue-500 to-blue-600'
                 },
                 {
                   icon: FaRocket,
-                  title: 'Innovative Solutions',
-                  description: 'Cutting-edge technology and creative approaches to solve complex challenges',
+                  title: 'Full-Stack Solutions',
+                  description: 'From AI chatbots to custom software, digital marketing to video production',
                   gradient: 'from-orange-500 to-red-500'
                 },
                 {
                   icon: FaGlobe,
-                  title: 'Comprehensive Services',
-                  description: 'Full-spectrum solutions from business consulting to insurance and technology',
-                  gradient: 'from-purple-500 to-pink-500'
+                  title: 'Complete Business Partner',
+                  description: 'Technology services plus tax planning and insurance consulting under one roof',
+                  gradient: 'from-green-500 to-emerald-500'
                 },
                 {
                   icon: FaAward,
-                  title: 'Client-Focused',
-                  description: 'Personalized approach tailored to your unique goals and requirements',
+                  title: 'Proven Results',
+                  description: '180+ successful projects with measurable ROI and business transformation',
                   gradient: 'from-pink-500 to-rose-500'
                 }
               ].map((feature, index) => (
@@ -615,13 +615,13 @@ const About = () => {
                 </motion.a>
 
                 <motion.a
-                  href="tel:929-919-3574"
+                  href="tel:929-702-2818"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="inline-flex items-center px-8 py-4 border-2 border-white/40 rounded-xl backdrop-blur-sm hover:bg-white hover:text-navy-900 transition-all font-bold"
                 >
                   <FaPhone className="mr-3" />
-                  929-919-3574
+                  929-702-2818
                 </motion.a>
               </div>
             </motion.div>
@@ -633,3 +633,4 @@ const About = () => {
 };
 
 export default About;
+
