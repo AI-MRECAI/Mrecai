@@ -27,13 +27,33 @@ export const supabase = createClient(supabaseUrl, supabaseServiceKey, {
   }
 });
 
-// Test connection
+// Test connection (non-blocking)
 export const testConnection = async (): Promise<void> => {
   try {
-    const { error } = await supabase.from('contacts').select('count', { count: 'exact', head: true });
-    if (error) throw error;
-    console.log('✅ Supabase Connected Successfully');
+    // Simple health check - just verify the client is configured
+    if (supabase) {
+      console.log('✅ Supabase client initialized');
+      console.log('📍 Supabase URL:', supabaseUrl);
+      
+      // Try a simple query with timeout
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Connection timeout')), 5000)
+      );
+      
+      const queryPromise = supabase.from('contacts').select('count', { count: 'exact', head: true });
+      
+      const { error } = await Promise.race([queryPromise, timeoutPromise]) as any;
+      
+      if (error) {
+        console.warn('⚠️  Supabase query test failed:', error.message);
+        console.log('💡 This is non-critical. Server will continue to start.');
+      } else {
+        console.log('✅ Supabase connection verified');
+      }
+    }
   } catch (error) {
-    console.error('❌ Supabase Connection Error:', error instanceof Error ? error.message : 'Unknown error');
+    console.warn('⚠️  Supabase connection test failed:', error instanceof Error ? error.message : 'Unknown error');
+    console.log('💡 This is non-critical. Server will continue to start.');
+    console.log('💡 Make sure your Supabase tables exist and RLS policies are configured.');
   }
 };

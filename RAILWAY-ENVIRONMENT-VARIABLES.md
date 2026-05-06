@@ -10,11 +10,14 @@ Go to [Supabase Dashboard](https://supabase.com/dashboard) → Your Project → 
 
 ```env
 SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_ANON_KEY=your-anon-key-here
 SUPABASE_SERVICE_KEY=your-service-role-key-here
 ```
 
-**Important:** Use the `service_role` key (not the `anon` key) for `SUPABASE_SERVICE_KEY`
+**Important Notes:**
+- Use the `service_role` key (NOT the `anon` key) for `SUPABASE_SERVICE_KEY`
+- The `service_role` key has full database access - keep it secret!
+- Only `SUPABASE_URL` and `SUPABASE_SERVICE_KEY` are needed for the backend
+- Make sure your Supabase project is active and not paused
 
 ### 2. Email Service Variables (REQUIRED)
 ```env
@@ -57,11 +60,12 @@ After adding all variables, Railway will automatically redeploy your service.
 ### Supabase Values:
 1. Go to [Supabase Dashboard](https://supabase.com/dashboard)
 2. Select your project
-3. Go to **Settings** → **API**
-4. Copy:
+3. **Important:** Make sure your project is not paused (check project status)
+4. Go to **Settings** → **API**
+5. Copy:
    - **Project URL** → Use for `SUPABASE_URL`
-   - **anon public** key → Use for `SUPABASE_ANON_KEY`
    - **service_role** key → Use for `SUPABASE_SERVICE_KEY` ⚠️ Keep this secret!
+6. **Note:** You only need these 2 variables for the backend (not the anon key)
 
 ### SMTP2GO Values:
 1. Go to [SMTP2GO Dashboard](https://www.smtp2go.com/)
@@ -80,8 +84,8 @@ After adding all variables, check the Railway logs. You should see:
 ## Quick Checklist
 
 - [ ] `SUPABASE_URL` added
-- [ ] `SUPABASE_ANON_KEY` added
-- [ ] `SUPABASE_SERVICE_KEY` added (use service_role key)
+- [ ] `SUPABASE_SERVICE_KEY` added (use service_role key, NOT anon key)
+- [ ] Supabase project is active (not paused)
 - [ ] `SMTP2GO_API_KEY` added
 - [ ] `SMTP2GO_HOST` = `mail.smtp2go.com`
 - [ ] `SMTP2GO_PORT` = `2525`
